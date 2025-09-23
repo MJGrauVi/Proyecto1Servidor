@@ -1,0 +1,4 @@
+/.docker/mariadb/
+/vendor/
+/composer.lock
+/.idea/

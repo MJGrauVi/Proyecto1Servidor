@@ -6,7 +6,7 @@ session_start(); // iniciamos la sesión en todas las páginas
 <head>
     <meta charset="UTF-8">
     <title>Mi Proyecto PHP</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css2/styles.css">
 </head>
 <body>
 <header>

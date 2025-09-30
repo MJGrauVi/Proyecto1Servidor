@@ -9,7 +9,7 @@
 
         if ($usuario === "admin" && $password === "1234") {
             $_SESSION['usuario'] = $usuario;
-            header("Location: index.php");
+            header("Location: index2.php");
             exit();
         } else {
             echo "<p class='error'>Usuario o contraseña incorrectos</p>";

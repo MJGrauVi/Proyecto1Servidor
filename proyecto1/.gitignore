@@ -1,4 +1,13 @@
-/.docker/mariadb/
-/vendor/
-/composer.lock
+# Archivos de configuración del IDE
 /.idea/
+../.idea
+
+# Dependencias de PHP (Composer)
+/vendor/
+src/vendor/
+
+# Carpeta de Docker para la base de datos
+/.docker/mariadb/
+
+# Composer lock (opcional, si no quieres versionarlo)
+composer.lock

@@ -1,0 +1,20 @@
+{
+    "name": "proyecto1servidor/proyecto1",
+    "description": "Un proyecto de ejemplo de DWES",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\Proyecto1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "María José Grau"
+        }
+    ],
+    "require": {
+        "ramsey/uuid": "^4.9",
+        "nesbot/carbon": "^3.10",
+        "phroute/phroute": "^2.2"
+    }
+}

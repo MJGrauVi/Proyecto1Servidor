@@ -10,4 +10,4 @@ src/vendor/
 /.docker/mariadb/
 
 # Composer lock (opcional, si no quieres versionarlo)
-composer.lock
+/src/composer.lock

@@ -10,6 +10,7 @@
         <li><a href="/ejercicios/bucle.php">Creación de un bucle en php</li>
         <li><a href="/ejercicios/plantillas/login.php">Plantilla login.php</li>
         <li><a href="/ejercicios/plantillas2/index.php">Proyecto</a></li>
+        <li><a href="../index.php">index.php</a></li>
     </ol>
 <body>
 

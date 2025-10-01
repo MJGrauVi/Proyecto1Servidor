@@ -1,10 +1,14 @@
 <?php
 $titulo="Backend Netflix";
+
+//Incluyo archivo configuraciones.
+include_once(__DIR__ . "/../../env.php");
 include_once("template/head.php");
 include_once("template/hamburger.php");
 include_once("template/header.php");
 include_once("template/aside.php");
 include_once("template/main.php");
+
 $peliculas=[
     [
         "nombre"=>"Titanic",
@@ -25,31 +29,33 @@ $peliculas=[
 ?>
 
 
-    <div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Pelicula</th>
-                <th scope="col">Director</th>
-                <th scope="col">Duración</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            for($i=0;$i<count($peliculas);$i++){
-                echo "<tr><th scope='row'>". $i+1 ."</th>";
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pelicula</th>
+            <th scope="col">Director</th>
+            <th scope="col">Duración</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        for($i=0;$i<count($peliculas);$i++){
+            echo "<tr><th scope='row'>". $i+1 ."</th>";
                 echo "<td>".$peliculas[$i]['nombre']."</td>";
                 echo "<td>".$peliculas[$i]['director']."</td>";
                 echo "<td>".$peliculas[$i]['duracion']."</td>";
-                echo "</tr>";
+            echo "</tr>";
 
-            }
+        }
 
-            ?>
-            </tbody>
-        </table>
-    </div>
+        ?>
+        </tbody>
+    </table>
+</div>
 
 <?php
 include_once("template/footer.php");
+
+

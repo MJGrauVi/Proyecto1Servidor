@@ -2,7 +2,7 @@
 $titulo="Backend Netflix";
 
 //Incluyo archivo configuraciones.
-include_once(__DIR__ . "/../../env.php");
+//include_once(__DIR__ . "/../../env.php");
 include_once("template/head.php");
 include_once("template/hamburger.php");
 include_once("template/header.php");

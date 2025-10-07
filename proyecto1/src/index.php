@@ -1,43 +1,60 @@
 <?php
-include_once "vendor/autoload.php";
-include_once "env.php";
+require_once "vendor/autoload.php";
+require_once "funciones.php";
 
-//Directiva para inserta o utilizar la clase RouteCollector
-use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\RouteCollector;
+use Phroute\Phroute\Dispatcher;
 
-//instancia una variable de la clase RouteCollector
 $router = new RouteCollector();
 
-//Definir las rutas de mi aplicación
-
-$router->get('/',function(){
-    return 'Estoy en la página principal';
+// WEB PÚBLICA
+$router->get('/', function () {
+    $titulo = "Inicio";
+    $contenido = "Bienvenido a la web pública";
+    include "vistas/public/template/head.php";
+    include "vistas/public/template/header.php";
+    include "vistas/public/template/aside.php";
+    include "vistas/public/main.php";
+    include "vistas/public/template/footer.php";
 });
 
-$router->get('/administrador',function(){
-    include_once DIRECTORIO_VISTAS_ADMINISTRACION."welcome.php";
-});
-$router->get('/login',function(){
-    include_once DIRECTORIO_VISTAS."indice.php";
-});
-
-$router->get('/pass', function () {
-    echo "Se va a generar una contraña";
-    include_once "auxiliar/funciones.php";
-
-    echo generatePassword(16);
+$router->get('/dni', function () {
+    $numero = $_GET['numero'] ?? '';
+    $resultado = $numero ? calcularLetraDNI($numero) : "Debes pasar ?numero=...";
+    $titulo = "Calcular DNI";
+    $contenido = "La letra para el DNI <strong>$numero</strong> es: <strong>$resultado</strong>";
+    include "vistas/public/template/head.php";
+    include "vistas/public/template/header.php";
+    include "vistas/public/template/aside.php";
+    include "vistas/public/main.php";
+    include "vistas/public/template/footer.php";
 });
 
-//Resolver la ruta que debemos cargar
-$dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
+$router->get('/password', function () {
+    $length = $_GET['length'] ?? 8;
+    $password = generatePassword((int)$length);
+    $titulo = "Generar Contraseña";
+    $contenido = "Contraseña generada: <strong>$password</strong>";
+    include "vistas/public/template/head.php";
+    include "vistas/public/template/header.php";
+    include "vistas/public/template/aside.php";
+    include "vistas/public/main.php";
+    include "vistas/public/template/footer.php";
+});
 
-try{
-    $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+// PANEL ADMIN
+$router->get('/administrador', function () {
+    $titulo = "Panel Administrador";
+    $contenido = "Bienvenido al panel de administración";
+    include "vistas/admin/template/head.php";
+    include "vistas/admin/template/header.php";
+    include "vistas/admin/template/aside.php";
+    include "vistas/admin/dashboard.php";
+    include "vistas/admin/template/footer.php";
+});
 
-}catch (HttpRouteNotFoundException $e){
-    return include_once "views/404.php";
-}
-
-// Print out the value returned from the dispatched function
-echo $response;
+// Dispatcher
+$dispatcher = new Dispatcher($router->getData());
+$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+$uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+echo $dispatcher->dispatch($method, $uri);

@@ -1,5 +1,6 @@
+</div>
 <footer class="site-footer">
-    <p>Proyecto Base &copy; <?= date('Y') ?></p>
+    <p><?= $titulo ?? 'Proyecto Base' ?> &copy; <?= date('Y') ?></p>
 </footer>
 
 <!-- Script mínimo para menú móvil -->

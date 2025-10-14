@@ -18,11 +18,13 @@
         <div class="brand">
             <a href="/" class="logo">Proyecto Base</a>
         </div>
+
         <button class="nav-toggle" id="navToggle" aria-label="Abrir navegación">
             ☰
         </button>
     </header>
     <div class="layout">
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir navegación"></button>
         <aside class="sidebar" id="sidebar" aria-label="Menú principal">
             <nav>
                 <ul>

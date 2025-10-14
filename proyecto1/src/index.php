@@ -2,6 +2,10 @@
 require_once "vendor/autoload.php";
 require_once "funciones.php";
 
+//Rutas de Usuario
+
+
+
 //Directiva para insertar o utilizar la clase RouteCollector
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\RouteCollector;

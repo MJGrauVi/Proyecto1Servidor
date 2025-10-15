@@ -17,11 +17,11 @@ include_once "template/header.php";
         <form action="/login" method="post">
             <div class="form-group">
                 <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario" required>
+                <input type="text" name="usuario" id="usuario" required>
             </div>
             <div class="form-group">
                 <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required>
+                <input type="password" name="password" id="password" required>
             </div>
             <div class="form-group">
                 <button type="submit">Entrar</button>

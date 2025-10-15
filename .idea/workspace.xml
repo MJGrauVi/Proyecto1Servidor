@@ -4,7 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="367c22cf-444d-4531-a41f-d6a5b27ed599" name="Changes" comment="" />
+    <list default="true" id="367c22cf-444d-4531-a41f-d6a5b27ed599" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/proyecto1/src/App/Controllers/MovieController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proyecto1/src/App/Interface/ControllerInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/class/GestorPosts.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/class/GestorPosts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/class/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/class/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/class/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/class/Usuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/enum/TipoUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/enum/TipoUsuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/env.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/env.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/funciones.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/funciones.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/generarPassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/generarPassword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/add-pelicula.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/add-pelicula.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/aside.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/aside.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/edit-pelicula.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/edit-pelicula.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/head.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/head.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/styleAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/styleAdmin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/generarPassword.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/generarPassword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/letraDni.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/letraDni.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/loginForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/loginForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/aside.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/aside.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/estiles2.css" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/estiles2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/favicon-16x16core.png" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/favicon-16x16core.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/head.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/head.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/loginStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/loginStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/stylesss.css" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/template/stylesss.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +63,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/proyecto1/src/App/Controllers/AuthController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/proyecto1/src/App/Controllers/MovieController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/proyecto1/src/App/Interface/ControllerInterface.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/proyecto1/src/App/class/Usuario.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/proyecto1/src/composer.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/proyecto1/src/index.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/proyecto1/src/vendor/composer/autoload_psr4.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/bin/php" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -32,24 +82,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.proyecto1.apache_php_proyecto: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.proyecto1: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;PHP Script.index.php.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ciclost/PhpstormProjects/Proyecto1Servidor&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.proyecto1.apache_php_proyecto: Compose Deployment.executor": "Run",
+    "Docker.proyecto1: Compose Deployment.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "PHP Script.index.php.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/ciclost/PhpstormProjects/Proyecto1Servidor",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/proyecto1/src/app" />
@@ -120,7 +172,8 @@
       <workItem from="1759943071224" duration="5558000" />
       <workItem from="1759948637878" duration="703000" />
       <workItem from="1760375090471" duration="5838000" />
-      <workItem from="1760453532826" duration="3331000" />
+      <workItem from="1760453532826" duration="3409000" />
+      <workItem from="1760547849957" duration="5830000" />
     </task>
     <servers />
   </component>

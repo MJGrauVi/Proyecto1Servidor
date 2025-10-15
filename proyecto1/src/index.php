@@ -1,10 +1,11 @@
 <?php
 require_once "vendor/autoload.php";
 require_once "funciones.php";
-
 //Directiva para insertar o utilizar la clase RouteCollector
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\RouteCollector;
+use App\Controllers\UserController;
+use App\Controllers\MovieController;
 
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
@@ -14,6 +15,18 @@ $router = new RouteCollector();
 
 $router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 $router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
+
+//En clase
+//Rutas de Servicio  API REST
+
+$router->get('user',[UserController::CLASS, 'index']);
+$router->post('user',[UserControles::class, 'store']);
+$router->put('/user',[UserControles::class,'destroy']);
+
+//Rutas asocialdas a la vista de usuario
+$router->get('/user/create/', [UserController::class, 'create' ]);
+$router->get('/user/{id}/edit/' ,[UserController::class, 'edit']);
+    
 
 
 //Define las rutas a la que va a responder mi aplicación web.
@@ -48,9 +61,6 @@ $router->get('/addPelicula', function(){
     include_once "vistas/public/add-pelicula.php";
 });
 
-
-
-
 // PANEL ADMIN
 $router->get('/administrador', function () {
     $titulo = "Panel Administrador";
@@ -79,15 +89,14 @@ $router->post('/movie', function () {
 $router->delete('/movie/{id}', function ($id) {
     //ruta para el borrado de una pelicula
 });
-$router->put('/movie/{$id}', function ($id) {
-    //instrucciones para modificar un pelicula guardada.
-});
-$router->get('/movie', function () {
+
+
+//$router->get('/movie', function () {
     //Devuelve los datos de todas las peliculas
-});
-$router->get('/movie/{id}', function ($id) {
+//});
+//$router->get('/movie/{id}', function ($id) {
     //Devuelve los datos de una pelicula
-});
+//});
 
 // Dispatcher
 use Phroute\Phroute\Dispatcher;

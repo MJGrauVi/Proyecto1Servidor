@@ -3,8 +3,8 @@
 ../.idea
 
 # Dependencias de PHP (Composer)
-/vendor/
-src/vendor/
+#/vendor/
+/src/vendor/
 
 # Carpeta de Docker para la base de datos
 /.docker/mariadb/

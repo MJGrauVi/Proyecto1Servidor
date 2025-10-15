@@ -2,16 +2,19 @@
 require_once "vendor/autoload.php";
 require_once "funciones.php";
 
-//Rutas de Usuario
-
-
-
 //Directiva para insertar o utilizar la clase RouteCollector
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\RouteCollector;
 
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
+
+
+//Rutas de Usuario APP
+
+$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
+$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
+
 
 //Define las rutas a la que va a responder mi aplicación web.
 // WEB PÚBLICA
@@ -65,7 +68,6 @@ $router->get('/administracion/movie/create', function () {
 $router->get('/administracion/movie/{$id}/edit', function ($id) {
     include_once "admin/views/edit-pelicula.php";
 });
-
 
 //Rutas de trabajo con peliculas
 $router->post('/movie', function () {

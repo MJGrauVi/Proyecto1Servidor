@@ -1,12 +1,15 @@
 services:
-
+  # Apache + PHP
   apache_php_proyecto:
-
     build:
-      context: .docker
+      context: ./.docker
       dockerfile: Dockerfile
     container_name: pila_php
 
+    #Activar esta línea cuando activemos en el Dockerfile.
+    #user: mariajose:mariajose (profe)
+
+    #Crea volumenes para almacenar mi página web.
     volumes:
       - ./src:/var/www/html
       - .docker/apache/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
@@ -28,7 +31,7 @@ services:
 
   mariadb:
     image: mariadb:latest
-    restart: on-failure
+    #restart: on-failure
 
     volumes:
       - .docker/mariadb:/var/lib/mysql:Z
@@ -44,9 +47,7 @@ services:
       MARIADB_DATABASE: proyecto
       MARIADB_USER: mariajose
       MARIADB_PASSWORD: gra200371
-
-    command:
-      --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password
 
   mongo:
     image: mongo:latest
@@ -58,6 +59,31 @@ services:
       - 27017:27017
     networks:
       - proyecto1
+
+  redis:
+    image: redis:latest
+    volumes:
+      - .docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - proyecto1
+
+#  openldap:
+#    image: bitnami/openldap:latest
+#    ports:
+#      - 1389:1389
+#      - 1636:1636
+#    environment:
+#      - LDAP_ADMIN_USERNAME=root
+#      - LDAP_ADMIN_PASSWORD=toor
+#      - LDAP_USERS=mariajose
+#      - LDAP_PASSWORDS=gra200371
+#    networks:
+#      - proyecto1
+#    volumes:
+#      - .docker/openldap_data:/bitnami/openldap/data
+
 
 networks:
   proyecto1:

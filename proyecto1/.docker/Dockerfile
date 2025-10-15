@@ -38,6 +38,14 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
       && apt-get clean
 
 WORKDIR /var/www/html
+#RUN useradd mariajose && usermod -aG sudo mariajose (profe)
+
+## Crear usuario y asignar permisos
+#RUN useradd -ms /bin/bash mariajose && usermod -aG sudo mariajose \
+#    && chown -R mariajose:www-data /var/www/html
+# Cambiar al usuario no root
+#USER mariajose
+
 
 #Instalación de Composer
 COPY --from=composer:2.8.11 /usr/bin/composer /usr/local/bin/composer

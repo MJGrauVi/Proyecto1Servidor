@@ -11,4 +11,6 @@
 
     <!-- Estilos -->
     <link rel="stylesheet" href="vistas/public/template/style.css">
+    <!--para que no aparezca el favicon, cargaba el de Netflix-->
+    <link rel="icon" href="favicon-16x16core.png">
 </head>

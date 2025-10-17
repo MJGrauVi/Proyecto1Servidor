@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Class;
+namespace App\class;
 
 class Post{
     private int $id;

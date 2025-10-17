@@ -38,15 +38,14 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
       && apt-get clean
 
 WORKDIR /var/www/html
-#RUN useradd mariajose && usermod -aG sudo mariajose (profe)
+ARG USERNAME=ciclost
+ARG USER_UID=1002
+ARG USER_GID=1002
 
-## Crear usuario y asignar permisos
-#RUN useradd -ms /bin/bash mariajose && usermod -aG sudo mariajose \
-#    && chown -R mariajose:www-data /var/www/html
-# Cambiar al usuario no root
-#USER mariajose
-
-
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
 #Instalación de Composer
 COPY --from=composer:2.8.11 /usr/bin/composer /usr/local/bin/composer
 

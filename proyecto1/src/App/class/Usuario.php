@@ -1,5 +1,5 @@
 <?php
-namespace App\Class;
+namespace App\class;
 class Usuario{
 private int $id;
 private string $userName;

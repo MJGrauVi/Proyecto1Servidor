@@ -10,7 +10,7 @@ interface ControllerInterface{
 
     function update();
 
-    function destroy();
+    function destroy($id);
 
     function create();
 

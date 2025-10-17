@@ -6,7 +6,7 @@ use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\RouteCollector;
 use App\Controllers\UserController;
 use App\Controllers\MovieController;
-
+use App\Controllers\DirectorController;
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
 
@@ -19,9 +19,9 @@ $router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
 //En clase
 //Rutas de Servicio  API REST
 
-$router->get('user',[UserController::CLASS, 'index']);
-$router->post('user',[UserControles::class, 'store']);
-$router->put('/user',[UserControles::class,'destroy']);
+$router->get('/user',[UserController::CLASS, 'index']);
+$router->post('/user',[UserController::class, 'store']);
+$router->put('/user',[UserController::class,'destroy']);
 
 //Rutas asocialdas a la vista de usuario
 $router->get('/user/create/', [UserController::class, 'create' ]);
@@ -47,6 +47,14 @@ $router->get('/dni', function () {
     $contenido = "<p>La letra para el DNI <strong>$numero</strong> es: <strong>$resultado</strong></p>";
     include "vistas/public/letraDni.php";
 });
+//rutas movie
+
+//rutes Director CRUD
+$router->get('/director',[DirectorController::class,'index']);
+//$router->get('director',[DirectorController::class, 'show']);
+$router->post('director',[DirectorController::class, 'store']);
+$router->put('director/{id',[DirectorController::class, 'update']);
+$router->delete('director/{id}',[DirectorController::class, 'destroy']);
 
 
 $router->get('/password', function () {

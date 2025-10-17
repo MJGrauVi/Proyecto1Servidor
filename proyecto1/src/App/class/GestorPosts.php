@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Class;
+namespace App\class;
 
 class GestorPosts{
     private array $posts = [];

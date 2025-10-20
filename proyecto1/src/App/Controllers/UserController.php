@@ -9,17 +9,27 @@ class UserController implements ControllerInterface
 
     function index()
     {
-        return "Hola";
+        $usuarios = UserModel::getAllUsers();
+        include_once DIRECTORIO ."allusers.php";
+
+
+    //return json_encode($usuario1);
+        $usuarios= [$usuario1, $usuario2];
+        include_once DIRECTORIO. "allusers.php";
     }
 
     function show($id)
     {
         return "Estos son los datos del usuario $id";
+        //return json_encode()
     }
 
     function store()
     {
-        // TODO: Implement store() method.
+        var_dump($_POST);
+
+
+        )
     }
 
     function update()
@@ -34,7 +44,7 @@ class UserController implements ControllerInterface
 
     function create()
     {
-        // TODO: Implement create() method.
+       return "formulario para crear usuario";
     }
 
     function edit($id)

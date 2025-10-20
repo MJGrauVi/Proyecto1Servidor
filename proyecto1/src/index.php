@@ -16,16 +16,16 @@ $router = new RouteCollector();
 $router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 $router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
 
-//En clase
+//Rutas asocialdas a la vista de usuario
+$router->get('/user/create/', [UserController::class, 'create' ]);
+$router->get('/user/{id}/edit/' ,[UserController::class, 'edit']);
 //Rutas de Servicio  API REST
 
 $router->get('/user',[UserController::CLASS, 'index']);
 $router->post('/user',[UserController::class, 'store']);
 $router->put('/user',[UserController::class,'destroy']);
 
-//Rutas asocialdas a la vista de usuario
-$router->get('/user/create/', [UserController::class, 'create' ]);
-$router->get('/user/{id}/edit/' ,[UserController::class, 'edit']);
+
     
 
 

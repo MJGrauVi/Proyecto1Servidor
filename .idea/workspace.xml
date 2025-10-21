@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="367c22cf-444d-4531-a41f-d6a5b27ed599" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/proyecto1/src/App/Model/UserModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/class/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/class/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/class/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/class/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/enum/TipoUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/enum/TipoUsuario.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +142,8 @@
       <workItem from="1760547849957" duration="6489000" />
       <workItem from="1760709547635" duration="6420000" />
       <workItem from="1760979736453" duration="69000" />
-      <workItem from="1760979872592" duration="5958000" />
+      <workItem from="1760979872592" duration="6038000" />
+      <workItem from="1761058814256" duration="2686000" />
     </task>
     <servers />
   </component>

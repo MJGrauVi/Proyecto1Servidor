@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Interface\ControllerInterface;
+use Respect\Validation\Exceptions\NestedValidationException;
 
 class UserController implements ControllerInterface
 {
@@ -26,15 +27,16 @@ class UserController implements ControllerInterface
 
     function store()
     {
-        var_dump($_POST);
+        var_dump(User::validateUser($_POST));
 
 
-        )
     }
 
     function update()
     {
-        // TODO: Implement update() method.
+        // TODO: Implement update() method. Tenemos que buscar los datos de un fichero
+        parse:str(file_get_contents("php://input"), $editData);
+        var_dump($editData);
     }
 
     function destroy()

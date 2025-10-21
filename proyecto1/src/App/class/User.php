@@ -3,6 +3,7 @@ namespace App\class;
 
 use App\Enum\TipoUsuario;
 use Ramsey\Uuid\UuidInterface;
+use Respect\Validation\Exceptions\NestedValidationException;
 
 class User implements \JsonSerializable
 }
@@ -43,7 +44,22 @@ private TipoUsuario $tipo;
             "tipo" => $this->tipo->name,
             "visualizaciones" => $this->visualizaciones
         ];
+    public function validateUser (array $userDate):User|array{
 
+        try{
+            v::key('username', v::stringType())
+                ->key('password', V::stringType()->length(3, 16))
+                ->key ('email', v::email())
+                ->key ('edad', v::intVal()->min(18))
+                ->key('type', v::in(['normal', 'admin', 'anumcios']))
+
+                ->assert(UserData);
+        }catch(NestedValidationException $errores){
+            foreach ($_POST as $key => $value) {
+                //var_dump($errores->getMessages());
+                foreach ($errores->getMessages() as $mensaje){
+                    echo $mensaje </br>" ;
+    }
 
 //getters y setters
 

@@ -2,6 +2,8 @@
 require_once "vendor/autoload.php";
 require_once "funciones.php";
 
+session_start();
+
 //Directiva para insertar o utilizar la clase RouteCollector
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\RouteCollector;
@@ -14,6 +16,7 @@ use App\Model\UserModel;
 $router = new RouteCollector();
 
 //Rutas de Usuario APP
+$router->get('/user/login', [UserController::class, 'verify']);
 
 $router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 $router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
@@ -22,11 +25,15 @@ $router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
 $router->get('/user',[UserController::class, 'index']);
 $router->get('/user/create/', [UserController::class, 'create' ]);
 $router->get('/user/{id}/edit/' ,[UserController::class, 'edit']);
-
-//Rutas de Servicio  API REST
-
 $router->post('/user',[UserController::class, 'store']);
 $router->put('/user',[UserController::class,'destroy']);
+
+//Rutas de Servicio  API REST
+$router->get('/api/user',[UserController::class, 'index']);
+$router->get('/api/user/create/', [UserController::class, 'create' ]);
+$router->get('/api/user/{id}/edit/' ,[UserController::class, 'edit']);
+$router->post('/api/user',[UserController::class, 'store']);
+$router->put('/api/user',[UserController::class,'destroy']);
 
 
 //Define las rutas a la que va a responder mi aplicación web.

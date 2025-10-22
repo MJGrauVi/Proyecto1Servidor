@@ -27,14 +27,23 @@ class UserController implements ControllerInterface
 
     function store()
     {
-        var_dump(User::validateUser($_POST));
+        var_dump(User::validateUserCreation($_POST));
     }
 
     function update($id)
     {
-        echo "$id";
-       /* parse_str(file_get_contents("php://input"),$editData);
-        var_dump($editData);*/
+
+        /*echo "$id";
+        $editData=["uuid"=>$id];  //comprobar si el uuid es valido.
+        $editData=array();*/
+        parse_str(file_get_contents("php://input"),$editData);
+        $editData['uuid']=$id;
+        $usuario = User::validateUser($editData);
+
+        //Guardo en usuario actualizado en la BBDD.
+
+        //Muestro los datos del usuario o los errores en la petición si los hay
+        var_dump($usuario);
     }
 
     function destroy($id)
@@ -50,5 +59,11 @@ class UserController implements ControllerInterface
     function edit($id)
     {
         // TODO: Implement edit() method.
+    }
+    function verify(){
+        $_POST['username'];
+        $_POST['password'];
+
+        $_SESSION['username']=$_POST['username'];
     }
 }

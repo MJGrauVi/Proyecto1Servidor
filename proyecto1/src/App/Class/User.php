@@ -117,7 +117,7 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
         ];
     }
 
-    public static function validateUser(array $userData): User|array
+    public static function validateUserCreation(array $userData): User|array
     {
         try {
             $validator = v::key('username', v::stringType())
@@ -143,5 +143,26 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
         $usuario->setTipo(TipoUsuario::stringToTipoUsuario($userData['tipo']));
 
         return $usuario;
+    }
+    public static function validateUserEdit(array $userData):User | array {
+        try {
+            v::key('uuid', V::uuid())
+                 ->optional(v::key('username', v::stringType()))
+                ->optional(v::key ('password', v::stringType()->length(3, 16)))
+                ->optional(v::key('email', v::email()))
+                ->optional(v::key('edad', v::intVal()->min(18)))
+                ->optional(v::key('tipo', v::in(['normal', 'anuncios', 'admin'])))->assert($userData);
+        } catch (NestedValidationException $errores) {
+
+            return $errores->getMessages();
+        }
+
+        //TODO buscar el usuari.
+        return new User(
+            Uuid::fromString($userData['uuid']),
+        $userData['username'],
+            passworkd '1234',
+         email 'pable@gmail.com',
+        TipoUsuario::stringToTipoUsuario($userData['tipo']))
     }
 }

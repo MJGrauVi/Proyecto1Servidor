@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 // Función para calcular letra del DNI
 function calcularLetraDNI(string $dni): string {
     $letras = "TRWAGMYFPDXBNJZSQVHLCKE"; //Letra que corresponde al módulo de dividir el numero de dni/23.
@@ -47,5 +49,30 @@ function generatePassword(int $caracteres, int $condiciones = 3): string {
     };
 
     return substr(str_shuffle(str_repeat($chars, ceil($caracteres / strlen($chars)))), 0, $caracteres);
+}
+/*function organizarImagen(array $datosImagen,string $tituloPelicula):string|bool{
+    $carpetas=scandir(__DIR__);
+    if (!array_search('uploaded',$carpetas)){
+        mkdir(__DIR__."/uploaded");
+        move_uploaded_file($datosImagen['tmp_name'],__DIR__."/uploaded/".$tituloPelicula."png");
+    }else{
+        move_uploaded_file($_FILES['poster']['tmp_name'],__DIR__."/uploaded/".$tituloPelicula."png");
+    }
+    return __DIR__."/uploaded/".$tituloPelicula."png";
+}*/
+function organizarImagen(array $datosImagen, string $tituloPelicula): string|bool {
+    $rutaCarpeta = __DIR__ . "/uploaded";
+
+    if (!is_dir($rutaCarpeta)) {
+        mkdir($rutaCarpeta);
+    }
+
+    $rutaDestino = $rutaCarpeta . "/" . $tituloPelicula . ".png";
+
+    if (move_uploaded_file($datosImagen['tmp_name'], $rutaDestino)) {
+        return $rutaDestino; // devuelve la ruta final
+    }
+
+    return false; // si falla el movimiento
 }
 

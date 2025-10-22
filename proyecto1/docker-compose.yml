@@ -7,7 +7,7 @@ services:
     container_name: pila_php
 
     #Activar esta línea cuando activemos en el Dockerfile.
-    user: ciclost:ciclost
+    user: mariajose:mariajose
 
     #Crea volumenes para almacenar mi página web.
     volumes:

@@ -38,7 +38,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
       && apt-get clean
 
 WORKDIR /var/www/html
-ARG USERNAME=ciclost
+ARG USERNAME=mariajose
 ARG USER_UID=1002
 ARG USER_GID=1002
 

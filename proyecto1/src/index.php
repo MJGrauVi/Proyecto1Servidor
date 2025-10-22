@@ -1,15 +1,17 @@
 <?php
 require_once "vendor/autoload.php";
 require_once "funciones.php";
+
 //Directiva para insertar o utilizar la clase RouteCollector
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\RouteCollector;
 use App\Controllers\UserController;
 use App\Controllers\MovieController;
 use App\Controllers\DirectorController;
+use App\Model\UserModel;
+
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
-
 
 //Rutas de Usuario APP
 
@@ -17,16 +19,14 @@ $router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 $router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
 
 //Rutas asocialdas a la vista de usuario
+$router->get('/user',[UserController::class, 'index']);
 $router->get('/user/create/', [UserController::class, 'create' ]);
 $router->get('/user/{id}/edit/' ,[UserController::class, 'edit']);
+
 //Rutas de Servicio  API REST
 
-$router->get('/user',[UserController::CLASS, 'index']);
 $router->post('/user',[UserController::class, 'store']);
 $router->put('/user',[UserController::class,'destroy']);
-
-
-    
 
 
 //Define las rutas a la que va a responder mi aplicación web.

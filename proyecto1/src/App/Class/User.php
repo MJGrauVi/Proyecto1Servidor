@@ -160,9 +160,9 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
         //TODO buscar el usuari.
         return new User(
             Uuid::fromString($userData['uuid']),
-        $userData['username'],
-            passworkd '1234',
-         email 'pable@gmail.com',
-        TipoUsuario::stringToTipoUsuario($userData['tipo']))
+            $userData['username'],
+            '1234',
+         'pable@gmail.com',
+        TipoUsuario::stringToTipoUsuario($userData['tipo']));
     }
 }

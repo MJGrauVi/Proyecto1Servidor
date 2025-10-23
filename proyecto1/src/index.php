@@ -16,8 +16,6 @@ use App\Model\UserModel;
 $router = new RouteCollector();
 
 //Rutas de Usuario APP
-$router->get('/user/login', [UserController::class, 'verify']);
-
 //$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 //$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
 

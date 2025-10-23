@@ -8,7 +8,7 @@ interface ControllerInterface{
 
     function store();
 
-    function update();
+    function update($id);
 
     function destroy($id);
 

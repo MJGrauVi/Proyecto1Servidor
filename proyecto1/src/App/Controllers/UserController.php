@@ -61,9 +61,16 @@ class UserController implements ControllerInterface
         // TODO: Implement edit() method.
     }
     function verify(){
-        $_POST['username'];
-        $_POST['password'];
+        /*$_POST['username'];
+        $_POST['password'];*/
+
+        var_dump($_POST);
 
         $_SESSION['username']=$_POST['username'];
+        var_dump($_SESSION);
     }
+    function show_login(){
+        include_once "App/Views/frontend/login.php";
+
+}
 }

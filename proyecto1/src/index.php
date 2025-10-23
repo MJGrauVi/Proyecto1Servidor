@@ -18,11 +18,13 @@ $router = new RouteCollector();
 //Rutas de Usuario APP
 $router->get('/user/login', [UserController::class, 'verify']);
 
-$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
-$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
+//$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
+//$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
 
 //Rutas asocialdas a la vista de usuario
 $router->get('/user',[UserController::class, 'index']);
+$router->get('/login',[UserController::class, 'show_login']);
+$router->get('/user/login',[UserController::class, 'verify']);
 $router->get('/user/create/', [UserController::class, 'create' ]);
 $router->get('/user/{id}/edit/' ,[UserController::class, 'edit']);
 $router->post('/user',[UserController::class, 'store']);

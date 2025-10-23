@@ -21,9 +21,9 @@ $router = new RouteCollector();
 
 //Rutas asocialdas a la vista de usuario
 $router->get('/user',[UserController::class, 'index']);
-$router->get('/login',[UserController::class, 'show_login']);
-$router->get('/user/login',[UserController::class, 'verify']);
-$router->get('/user/create/', [UserController::class, 'create' ]);
+$router->get('/login',[UserController::class, 'show_login']);//ok
+$router->get('/user/login',[UserController::class, 'verify']);//ok
+$router->get('/user/create/', [UserController::class, 'create']);
 $router->get('/user/{id}/edit/' ,[UserController::class, 'edit']);
 $router->post('/user',[UserController::class, 'store']);
 $router->put('/user',[UserController::class,'destroy']);
@@ -56,13 +56,6 @@ $router->get('/dni', function () {
 });
 //rutas movie
 
-//rutes Director CRUD
-$router->get('/director',[DirectorController::class,'index']);
-//$router->get('director',[DirectorController::class, 'show']);
-$router->post('director',[DirectorController::class, 'store']);
-$router->put('director/{id',[DirectorController::class, 'update']);
-$router->delete('director/{id}',[DirectorController::class, 'destroy']);
-
 
 $router->get('/password', function () {
     $length = $_GET['length'] ?? 8;
@@ -72,7 +65,7 @@ $router->get('/password', function () {
     include_once('vistas/public/generarPassword.php');
 });
 
-$router->get('/addPelicula', function(){
+$router->get('/add-post', function(){
     include_once "vistas/public/add-pelicula.php";
 });
 

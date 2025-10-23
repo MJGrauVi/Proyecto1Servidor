@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="367c22cf-444d-4531-a41f-d6a5b27ed599" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Class/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Class/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Interface/ControllerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Interface/ControllerInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/funciones.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/funciones.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proyecto1/src/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/add-pelicula.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/add-pelicula.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,11 +70,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/proyecto1/src/vistas/public" />
       <recent name="$PROJECT_DIR$/proyecto1/src/App/Views/backend" />
       <recent name="$PROJECT_DIR$/proyecto1/src/app" />
       <recent name="$PROJECT_DIR$/proyecto1/src" />
       <recent name="$PROJECT_DIR$/proyecto1" />
-      <recent name="$PROJECT_DIR$/proyecto1/netflix" />
     </key>
   </component>
   <component name="RunManager" selected="Docker.proyecto1: Compose Deployment">
@@ -146,7 +146,7 @@
       <workItem from="1760979872592" duration="6038000" />
       <workItem from="1761058814256" duration="2764000" />
       <workItem from="1761152859476" duration="6004000" />
-      <workItem from="1761231840584" duration="3409000" />
+      <workItem from="1761231840584" duration="6047000" />
     </task>
     <servers />
   </component>

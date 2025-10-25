@@ -1,13 +1,15 @@
 <?php
-$titulo = "Añadir publicación";
+$titulo = "Nueva publicación";
 include_once(__DIR__ . '/template/head.php');
 /*include_once "App/Views/frontend/template/header.php";*/
 include_once(__DIR__ . '/template/header.php');
 include_once __DIR__ . '/template/aside.php';
 include_once 'main.php';
 ?>
-<div class="form-container>
-    <h2 class=" page-title"><?= $titulo ?></h2>
+
+
+   <!-- <div class="form-container>
+    <h2 class=" page-title"><?php /*= $titulo */?></h2>
     <form action="/user/publicacion" method="post" enctype="multipart/form-data" class="p-4 rounded shadow bg-light" style="max-width: 600px; margin: auto;">
         <h2 class="mb-4 text-center text-primary">Nueva Publicación</h2>
 
@@ -54,61 +56,12 @@ include_once 'main.php';
             <button type="submit" class="btn btn-primary">Enviar publicación</button>
         </div>
     </form>
-</div>
+    </div>
+-->
 
 
 
 
-
-<!--<form action="/publicacion" method="post" enctype="multipart/form-data">
-   <div class="mb-3">
-       <label for="FormControlInputTitulo" class="form-label">Titulo</label>
-       <input type="text" class="form-control" name="titulo" id="FormControlInputTitulo" placeholder="Introduce el título">
-   </div>
-   <div class="mb-3">
-       <label for="FormControlInputFecha" class="form-label">Fecha de publicación</label>
-       <input type="date" class="form-control" name="fecha_publicacion" id="FormControlInputFecha">
-   </div>
-   <div class="mb-3">
-       <label for="FormControlSelectTipoPubli" class="form-label">Tipo publicación</label>
-       <select class="form-select" name="tipoPubli" id="FormControlSelectTipoPubli" aria-label="Default select example">
-           <option selected value="reflexion">Reflexión</option>
-           <option value="postColaborativo">Post colaborativo</option>
-           <option value="poemasyVersos">Poemas y versos</option>
-           <option value="cartaAbierta">Carta abierta</option>
-       </select>
-   </div>
-   <div class="mb-3">
-       <fieldset name="idomas">
-           <legend>Lenguajes Disponibles</legend>
-           <div class="form-check">
-               <input class="form-check-input" name="idiomas[]" type="checkbox" value="español" id="checkEspañol">
-               <label class="form-check-label" for="checkEspañol">
-                   Español
-               </label>
-           </div>
-           <div class="form-check">
-               <input class="form-check-input" name="idiomas[]" type="checkbox" value="ingles" id="checkIngles" checked>
-               <label class="form-check-label" for="checkIngles">
-                   Ingles
-               </label>
-           </div>
-       </fieldset>
-
-
-   </div>
-   <div class="mb-3">
-       <label class="form-label" for="FormControlFileImagen">Imagen de la publicación</label>
-       <input type="file" name="imagenpubli" id="FormControlFileImagen">
-   </div>
-
-
-   <div class="mb-3">
-       <input type="submit" value="Enviar">
-   </div>
-
-
-</form>-->
 
 
 <?php

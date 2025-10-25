@@ -233,6 +233,18 @@ footer {
 .form-group .submit:hover {
   background-color: #9c6ceeff;
 }
+.form-tipo{
+  margin-bottom: 15px;
+  display:flex;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.form-control-fecha{
+  width:min-content;
+  padding: 10px;
+}
 .error {
   color: red;
   text-align: center;

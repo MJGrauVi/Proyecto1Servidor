@@ -15,25 +15,42 @@ use App\Model\UserModel;
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
 
-//Rutas de Usuario APP
+//Rutas de Usuario APP/anterior
 //$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 //$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
 
 //Rutas asocialdas a la vista de usuario
-$router->get('/user',[UserController::class, 'index']);
-$router->get('/login',[UserController::class, 'show_login']);//ok
-$router->get('/user/login',[UserController::class, 'verify']);//ok
+$router->get('/user', [UserController::class, 'index']);
+$router->get('/login', [UserController::class, 'show_login']); //Muestra el formularioLogin
+$router->get('/user/login', [UserController::class, 'verify']); //procesa el formularioLogin
+$router->get('/registro', [UserController::class, 'show_registro']); // muestra el formularioRegistro
+$router->post('/user/registro', [UserController::class, 'registroVerify']); // procesa el formularioRegistro
+
+//publicacion
+
+$router->get('/publicacion', function () {
+    $titulo = "Crear Publicacion";
+    $contenido = "Creando.....";
+
+    include_once "App/Views/frontend/add-publicacion.php";
+});
+
+$router->get('/user/publicacion', function () {
+    return "Procesando publicacion";
+});
+
+
 $router->get('/user/create/', [UserController::class, 'create']);
-$router->get('/user/{id}/edit/' ,[UserController::class, 'edit']);
-$router->post('/user',[UserController::class, 'store']);
-$router->put('/user',[UserController::class,'destroy']);
+$router->get('/user/{id}/edit/', [UserController::class, 'edit']);
+$router->post('/user', [UserController::class, 'store']);
+$router->put('/user', [UserController::class, 'destroy']);
 
 //Rutas de Servicio  API REST
-$router->get('/api/user',[UserController::class, 'index']);
-$router->get('/api/user/create/', [UserController::class, 'create' ]);
-$router->get('/api/user/{id}/edit/' ,[UserController::class, 'edit']);
-$router->post('/api/user',[UserController::class, 'store']);
-$router->put('/api/user',[UserController::class,'destroy']);
+$router->get('/api/user', [UserController::class, 'index']);
+$router->get('/api/user/create/', [UserController::class, 'create']);
+$router->get('/api/user/{id}/edit/', [UserController::class, 'edit']);
+$router->post('/api/user', [UserController::class, 'store']);
+$router->put('/api/user', [UserController::class, 'destroy']);
 
 
 //Define las rutas a la que va a responder mi aplicación web.
@@ -56,7 +73,6 @@ $router->get('/dni', function () {
 });
 //rutas movie
 
-
 $router->get('/password', function () {
     $length = $_GET['length'] ?? 8;
     $password = generatePassword((int)$length);
@@ -65,10 +81,14 @@ $router->get('/password', function () {
     include_once('vistas/public/generarPassword.php');
 });
 
-$router->get('/add-post', function(){
-    include_once "vistas/public/add-pelicula.php";
-});
 
+//mo
+$router->get('/administracion/movie/create', function () {
+    include_once "admin/views/add-pelicula.php";
+});
+$router->get('/administracion/movie/{$id}/edit', function ($id) {
+    include_once "admin/views/edit-pelicula.php";
+});
 // PANEL ADMIN
 $router->get('/administrador', function () {
     $titulo = "Panel Administrador";
@@ -79,13 +99,7 @@ $router->get('/administrador', function () {
     include "vistas/admin/dashboard.php";
     include "vistas/admin/template/footer.php";
 });
-//mo
-$router->get('/administracion/movie/create', function () {
-    include_once "admin/views/add-pelicula.php";
-});
-$router->get('/administracion/movie/{$id}/edit', function ($id) {
-    include_once "admin/views/edit-pelicula.php";
-});
+
 
 //Rutas de trabajo con peliculas
 $router->post('/movie', function () {
@@ -100,10 +114,10 @@ $router->delete('/movie/{id}', function ($id) {
 
 
 //$router->get('/movie', function () {
-    //Devuelve los datos de todas las peliculas
+//Devuelve los datos de todas las peliculas
 //});
 //$router->get('/movie/{id}', function ($id) {
-    //Devuelve los datos de una pelicula
+//Devuelve los datos de una pelicula
 //});
 
 // Dispatcher

@@ -4,9 +4,6 @@
   --muted: #6b7280;
   --accent: #7c3aed; /* morado */
   --accent-2: #06b6d4; /* cyan */
-  --accent-3: #10b981; /* verde esmeralda */
-  --accent-4: #ef4444; /* rojo coral */
-  --default: #f59e0b;
   --sidebar-bg: rgba(255, 255, 255, 0.6);
   --glass: rgba(255, 255, 255, 0.6);
   --radius: 12px;
@@ -161,11 +158,9 @@ main h2 {
 .card.password {
   border-left: 5px solid var(--accent);
 }
-.card.publicacion{
-  border-left: 5px solid var(--accent-3);
-}
-.card:not(.dni):not(.password):not(.publicacion) {
-  border-left: 5px solid var(--default);
+
+.card:not(.dni):not(.password) {
+  border-left: 5px solid #f59e0b;
 }
 
 /* Footer */

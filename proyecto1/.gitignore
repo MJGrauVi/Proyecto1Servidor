@@ -1,9 +1,9 @@
 # Archivos de configuración del IDE
 /.idea/
-../.idea
 
 # Dependencias de PHP (Composer)
 #/vendor/
+
 /src/vendor/
 
 # Carpeta de Docker para la base de datos
@@ -11,3 +11,19 @@
 
 # Composer lock (opcional, si no quieres versionarlo)
 /src/composer.lock
+
+#Ignoro estos archivos para evitar cambiar cada vez usuarios########################
+# Dockerfile dentro de .docker
+/.docker/Dockerfile
+
+# Archivo de configuración de Apache
+/.docker/apache/apache2.conf
+
+# Archivos de entorno y configuración específicos
+/docker-compose.yml
+/.env
+
+# Logs y archivos temporales
+*.log
+*.tmp
+############################################################

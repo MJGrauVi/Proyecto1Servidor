@@ -4,9 +4,8 @@
   --muted: #6b7280;
   --accent: #7c3aed; /* morado */
   --accent-2: #06b6d4; /* cyan */
-  --accent-3: #10b981; /* verde esmeralda */
-  --accent-4: #ef4444; /* rojo coral */
-  --default: #f59e0b;
+  --acent-3: #ED3A91FF;
+  --acent-4: #1ca31a;
   --sidebar-bg: rgba(255, 255, 255, 0.6);
   --glass: rgba(255, 255, 255, 0.6);
   --radius: 12px;
@@ -164,8 +163,9 @@ main h2 {
 .card.publicacion{
   border-left: 5px solid var(--accent-3);
 }
+
 .card:not(.dni):not(.password):not(.publicacion) {
-  border-left: 5px solid var(--default);
+  border-left: 5px solid #f59e0b;
 }
 
 /* Footer */
@@ -181,7 +181,7 @@ footer {
 /* login */
 
 /*body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f4f4f4; }*/
-.login-container {
+.form-container {
   width: 500px;
   margin: auto;
   background-color: #fff;
@@ -189,7 +189,7 @@ footer {
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-.login-container h2 {
+.form-container h2 {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -207,7 +207,7 @@ footer {
   border-radius: 4px;
   box-sizing: border-box;
 }
-.form-group button {
+.form-group button  {
   width: 100%;
   padding: 10px;
   background-color: var(--accent);
@@ -218,7 +218,20 @@ footer {
   font-size: 16px;
 }
 .form-group button:hover {
-  background-color: #9C6CEEFF;
+  background-color: #9c6ceeff;
+}
+.form-group .submit  {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.form-group .submit:hover {
+  background-color: #9c6ceeff;
 }
 .error {
   color: red;

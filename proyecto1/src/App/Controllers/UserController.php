@@ -80,7 +80,7 @@ class UserController implements ControllerInterface
 
     }
     function show_registro(){
-        $contenido
+        $contenido="";
         include_once "App/Views/frontend/registro.php";
     }
     function registro() {

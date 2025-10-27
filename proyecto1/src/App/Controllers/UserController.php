@@ -22,7 +22,12 @@ class UserController implements ControllerInterface
 
     function show($id)
     {
-        return "Estos son los datos del usuario $id";
+        if (isset($_SESSION['username'])) {
+        }else{
+            //Muestro una vista de no se puede acceder a estos datos
+            }
+        return "Estos son los datod de usuario $id";
+
     }
 
     function store()
@@ -64,16 +69,28 @@ class UserController implements ControllerInterface
     function verify(){  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         /*$_POST['username'];
         $_POST['password'];*/
+        //Hay que encriptar el id del usuario.
+        $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        var_dump(password_verify($_POST['password'], $hash));
+
+
      /*   if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }*/
         var_dump($_POST);
+        $idUsuario= "kkkllgl";
+//Petición a la base de datos para comprobar si el usuaria existe.
+
 
         //Si es correcto el login.
         $_SESSION['username']=$_POST['username'];
+        $_SESSION['uuid']=$idUsuario;
+
         var_dump($_SESSION);
     }
-    
+    function logout(){
+        session_destroy();
+    }
     function show_login(){
         /*include_once "App/Views/frontend/login.php";*/
         include_once __DIR__ . "/../Views/frontend/login.php"; //Cambio a ruta relativa al controlador.

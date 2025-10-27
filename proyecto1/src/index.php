@@ -22,9 +22,10 @@ $router = new RouteCollector();
 //Rutas asocialdas a la vista de usuario
 $router->get('/user', [UserController::class, 'index']);
 $router->get('/login', [UserController::class, 'show_login']); //Muestra el formularioLogin
-$router->get('/user/login', [UserController::class, 'verify']); //procesa el formularioLogin
+$router->post('/user/login', [UserController::class, 'verify']); //procesa el formularioLogin
 $router->get('/registro', [UserController::class, 'show_registro']); // muestra el formularioRegistro
 $router->post('/user/registro', [UserController::class, 'registroVerify']); // procesa el formularioRegistro
+$router->get('/user/logout', [UserController::class, 'logout']); //Eliminar un ususario.
 
 //publicacion
 

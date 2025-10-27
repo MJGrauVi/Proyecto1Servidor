@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="367c22cf-444d-4531-a41f-d6a5b27ed599" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/funciones.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/funciones.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proyecto1/src/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/vistas/admin/template/add-pelicula.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/vistas/public/add-pelicula.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="PHP File" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -146,7 +146,8 @@
       <workItem from="1760979872592" duration="6038000" />
       <workItem from="1761058814256" duration="2764000" />
       <workItem from="1761152859476" duration="6004000" />
-      <workItem from="1761231840584" duration="6047000" />
+      <workItem from="1761231840584" duration="6177000" />
+      <workItem from="1761588146290" duration="5244000" />
     </task>
     <servers />
   </component>

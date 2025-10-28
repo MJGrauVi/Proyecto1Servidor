@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="367c22cf-444d-4531-a41f-d6a5b27ed599" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/proyecto1/src/App/Views/backend/User/createUserEdit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Class/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Class/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Model/UserModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Model/UserModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Views/frontend/registro.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Views/frontend/registro.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="PHP File" />
         <option value="Dockerfile" />
+        <option value="PHP File" />
       </list>
     </option>
   </component>
@@ -147,7 +150,8 @@
       <workItem from="1761058814256" duration="2764000" />
       <workItem from="1761152859476" duration="6004000" />
       <workItem from="1761231840584" duration="6177000" />
-      <workItem from="1761588146290" duration="5244000" />
+      <workItem from="1761588146290" duration="5392000" />
+      <workItem from="1761666817242" duration="3380000" />
     </task>
     <servers />
   </component>

@@ -123,8 +123,8 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
             $validator = v::key('username', v::stringType())
                 ->key('password', v::stringType()->length(3, 16))
                 ->key('email', v::email())
-                ->key('edad', v::intVal()->min(18))
-                ->key('tipo', v::in(['normal', 'anuncios', 'admin']));
+                ->key('edad', v::intVal()->min(18), false)
+                ->key('tipo', v::in(['normal', 'anuncios', 'admin']),false);
 
             $validator->assert($userData);
         } catch (NestedValidationException $errores) {
@@ -139,8 +139,8 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
             //TipoUsuario::stringToTipoUsuario($userData['tipo'])  No debe estar aquí en el constructor y eliminarlo bajo.
         );
 
-        $usuario->setEdad($userData['edad']);
-        $usuario->setTipo(TipoUsuario::stringToTipoUsuario($userData['tipo']));
+        $usuario->setEdad($userData['edad']??18);
+        $usuario->setTipo(TipoUsuario::stringToTipoUsuario($userData['tipo']??"Normal"));
 
         return $usuario;
     }

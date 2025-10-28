@@ -12,7 +12,7 @@ include_once(__DIR__ . '/template/header.php');
 </main>-->
     <div class="form-container">
         <h2 class="page-title"><?= $titulo ?></h2>
-        <form action="/user/registro" method="post">
+        <form action="/user"  method="post">
 <div class="form-group">
             <label for="inputUsername">Nombre de Usuario</label>
             <input type="text" id="inputUsername" name="username" placeholder="Intro" required>

@@ -60,24 +60,34 @@ class UserController implements ControllerInterface
     function create()
     {
         return "formulario para crear usuario";
+        //User/createuser.php
     }
 
     function edit($id)
     {
-        // TODO: Implement edit() method.
+        $Usuario =
+        // Recuperar los datos de un usuario del Model
+        include_once DIRECTORIO_VISTAS_BACKEND ."User/editUser.php";
+        //Llamar a la vista que se muestre los datos del usuario
     }
+
     function verify(){  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         /*$_POST['username'];
         $_POST['password'];*/
+
+
+
         //Hay que encriptar el id del usuario.
-        $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        var_dump(password_verify($_POST['password'], $hash));
+        //$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        //var_dump(password_verify($_POST['password'], $hash));
 
 
      /*   if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }*/
         var_dump($_POST);
+
+
         $idUsuario= "kkkllgl";
 //Petición a la base de datos para comprobar si el usuaria existe.
 
@@ -189,4 +199,6 @@ class UserController implements ControllerInterface
         $_SESSION['username']=$_POST['username'];
         var_dump($_SESSION);
     }
+
+
 }

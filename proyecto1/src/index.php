@@ -21,11 +21,15 @@ $router = new RouteCollector();
 
 //Rutas asocialdas a la vista de usuario
 $router->get('/user', [UserController::class, 'index']);
+$router->post('/user/', [UserController::class, 'store']);
 $router->get('/login', [UserController::class, 'show_login']); //Muestra el formularioLogin
 $router->post('/user/login', [UserController::class, 'verify']); //procesa el formularioLogin
 $router->get('/registro', [UserController::class, 'show_registro']); // muestra el formularioRegistro
 $router->post('/user/registro', [UserController::class, 'registroVerify']); // procesa el formularioRegistro
 $router->get('/user/logout', [UserController::class, 'logout']); //Eliminar un ususario.
+$router->get('/user/create/', [UserController::class, 'create']);
+$router->put('/user', [UserController::class, 'destroy']);
+$router->get('/user/{id}/edit/', [UserController::class, 'edit']);
 
 //publicacion
 
@@ -41,10 +45,7 @@ $router->get('/user/publicacion', function () {
 });
 
 
-$router->get('/user/create/', [UserController::class, 'create']);
-$router->get('/user/{id}/edit/', [UserController::class, 'edit']);
-$router->post('/user', [UserController::class, 'store']);
-$router->put('/user', [UserController::class, 'destroy']);
+
 
 //Rutas de Servicio  API REST
 $router->get('/api/user', [UserController::class, 'index']);

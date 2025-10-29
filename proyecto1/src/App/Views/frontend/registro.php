@@ -10,6 +10,15 @@ include_once(__DIR__ . '/template/header.php');
     <h2 class="tituloPagina"><?php /*= $titulo */ ?></h2>
     <div class="content"><?php /*= $contenido */ ?></div>
 </main>-->
+
+<!-- pendiente de comprobación
+<?php if(is_array($resultado)){?>
+<div class="mensaje-error">
+    <?php foreach ($resultado as $error){echo $error. "</br>";}?>
+</div>
+}
+-->
+
     <div class="form-container">
         <h2 class="page-title"><?= $titulo ?></h2>
         <form action="/user"  method="post">

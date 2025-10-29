@@ -14,10 +14,11 @@ class UserController implements ControllerInterface
     function index() //El router Phroute instancia el controlador automáticamente en el index.php con "echo $dispatcher->dispatch($method, $uri);"
         //entonce no hace falta public static en la función index.
     {
-        $usuarios = UserModel::getAllUsers();
+       /* $usuarios = UserModel::getAllUsers();
         include_once __DIR__ . '/../Views/admin/allusers.php';
         /*header('Content-Type: application/json');
         echo Json_encode($usuarios);*/
+        return "Mostrar todos los usuarios";
     }
 
     function show($id)
@@ -32,7 +33,15 @@ class UserController implements ControllerInterface
 
     function store()
     {
-        var_dump(User::validateUserCreation($_POST));
+        var_dump($_POST);
+      //  $resultado= User::validateUserCreation($_POST);
+        //var_dump(User::validateUserCreation($_POST));
+       // if(is_array($resultado)){
+            //include_once ...vista.... /User/createUser.php
+      //  }else{
+      //      //TODO La validacion ha creado un usuario y tengo que guardarlo
+     //   }
+
     }
 
     function update($id)

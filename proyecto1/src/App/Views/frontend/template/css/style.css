@@ -4,7 +4,7 @@
   --muted: #6b7280;
   --accent: #7c3aed; /* morado */
   --accent-2: #06b6d4; /* cyan */
-  --acent-3: #ED3A91FF;
+  --acent-3: #ed3a91ff;
   --acent-4: #1ca31a;
   --sidebar-bg: rgba(255, 255, 255, 0.6);
   --glass: rgba(255, 255, 255, 0.6);
@@ -160,7 +160,7 @@ main h2 {
 .card.password {
   border-left: 5px solid var(--accent);
 }
-.card.publicacion{
+.card.publicacion {
   border-left: 5px solid var(--accent-3);
 }
 
@@ -207,7 +207,23 @@ footer {
   border-radius: 4px;
   box-sizing: border-box;
 }
-.form-group button  {
+.edad-tipoUsuario {
+  display: flex !important;
+
+  justify-content: center;
+  gap: 3rem;
+  align-items: flex-start;
+  /*flex-wrap: wrap; para que se adapte en pantallas pequeñas  */
+}
+.form-select {
+  align-items: center;
+  justify-content: center;
+  border: #dbd5d5 solid 1px;
+  font-size: medium;
+  border-radius: 3px;
+}
+
+.form-group button {
   width: 100%;
   padding: 10px;
   background-color: var(--accent);
@@ -220,7 +236,7 @@ footer {
 .form-group button:hover {
   background-color: #9c6ceeff;
 }
-.form-group .submit  {
+.form-group .submit {
   width: 100%;
   padding: 10px;
   background-color: var(--accent);
@@ -233,16 +249,16 @@ footer {
 .form-group .submit:hover {
   background-color: #9c6ceeff;
 }
-.form-tipo{
+.form-tipo {
   margin-bottom: 15px;
-  display:flex;
+  display: flex;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
-.form-control-fecha{
-  width:min-content;
+.form-control-fecha {
+  width: min-content;
   padding: 10px;
 }
 .error {

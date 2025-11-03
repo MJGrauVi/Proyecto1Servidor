@@ -12,45 +12,45 @@ class UserController implements ControllerInterface
 {
 
     function index() //El router Phroute instancia el controlador automáticamente en el index.php con "echo $dispatcher->dispatch($method, $uri);"
-        //entonce no hace falta public static en la función index.
+    //entonce no hace falta public static en la función index.
     {
-       /* $usuarios = UserModel::getAllUsers();
-        include_once __DIR__ . '/../Views/admin/allusers.php';
+        $usuarios = UserModel::getAllUsers();
+        //include_once __DIR__ . '/../Views/admin/allusers.php';
+        include_once DIRECTORIO_VISTAS_BACKEND . "User/allusers.php";
+
         /*header('Content-Type: application/json');
         echo Json_encode($usuarios);*/
-        return "Mostrar todos los usuarios";
     }
 
     function show($id)
     {
         if (isset($_SESSION['username'])) {
-        }else{
+        } else {
             //Muestro una vista de no se puede acceder a estos datos
-            }
+        }
         return "Estos son los datod de usuario $id";
-
     }
 
     function store()
     {
         var_dump($_POST);
-      //  $resultado= User::validateUserCreation($_POST);
+        //  $resultado= User::validateUserCreation($_POST);
         //var_dump(User::validateUserCreation($_POST));
-       // if(is_array($resultado)){
-            //include_once ...vista.... /User/createUser.php
-      //  }else{
-      //      //TODO La validacion ha creado un usuario y tengo que guardarlo
-     //   }
+        // if(is_array($resultado)){
+        //include_once ...vista.... /User/createUser.php
+        //  }else{
+        //      //TODO La validacion ha creado un usuario y tengo que guardarlo
+        //   }
 
     }
 
     function update($id)
     {
         //Leo del fichero input los datos que me llegan de la peticion PUT.
-        parse_str(file_get_contents("php://input"),$editData);
+        parse_str(file_get_contents("php://input"), $editData);
 
         //Añado el uuid a los datos que me han llegado en la peticion PUT.
-        $editData['uuid']=$id;
+        $editData['uuid'] = $id;
 
         //Valido los datos que han llegado en la peticion PUT.
         $usuario = User::validateUserEdit($editData);
@@ -75,12 +75,13 @@ class UserController implements ControllerInterface
     function edit($id)
     {
         $Usuario =
-        // Recuperar los datos de un usuario del Model
-        include_once DIRECTORIO_VISTAS_BACKEND ."User/editUser.php";
+            // Recuperar los datos de un usuario del Model
+            include_once DIRECTORIO_VISTAS_BACKEND . "User/editUser.php";
         //Llamar a la vista que se muestre los datos del usuario
     }
 
-    function verify(){  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
+    function verify()
+    {  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         /*$_POST['username'];
         $_POST['password'];*/
 
@@ -91,40 +92,44 @@ class UserController implements ControllerInterface
         //var_dump(password_verify($_POST['password'], $hash));
 
 
-     /*   if (session_status() === PHP_SESSION_NONE) {
+        /*   if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }*/
         var_dump($_POST);
 
 
-        $idUsuario= "kkkllgl";
-//Petición a la base de datos para comprobar si el usuaria existe.
+        $idUsuario = "kkkllgl";
+        //Petición a la base de datos para comprobar si el usuaria existe.
 
 
         //Si es correcto el login.
-        $_SESSION['username']=$_POST['username'];
-        $_SESSION['uuid']=$idUsuario;
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['uuid'] = $idUsuario;
 
         var_dump($_SESSION);
     }
-    function logout(){
+    function logout()
+    {
         session_destroy();
     }
-    function show_login(){
+    function show_login()
+    {
         /*include_once "App/Views/frontend/login.php";*/
         include_once __DIR__ . "/../Views/frontend/login.php"; //Cambio a ruta relativa al controlador.
 
     }
-    function show_registro(){
-        $contenido="";
+    function show_registro()
+    {
+        $contenido = "";
         include_once "App/Views/frontend/registro.php";
     }
-    function registro() {
+
+   /*  function registro()
+    {
         // 1️⃣ Iniciar sesión si no está iniciada (por si se usa más adelante)
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-
         // 2️⃣ Recoger los datos del formulario (por seguridad, con filtrado básico)
         $datos = filter_input_array(INPUT_POST, [
             'username' => FILTER_SANITIZE_STRING,
@@ -159,7 +164,6 @@ class UserController implements ControllerInterface
                 'message' => 'Usuario registrado correctamente',
                 'usuario' => $usuario
             ]);
-
         } catch (NestedValidationException $e) {
             // 8️⃣ Mostrar los errores de validación de forma legible
             header('Content-Type: application/json');
@@ -176,17 +180,17 @@ class UserController implements ControllerInterface
                 'message' => 'Error interno: ' . $e->getMessage()
             ]);
         }
-    }
+    } */
 
-    /*function registro() {
+    function registro() {
     $datos = $_POST;
-
+        //Definimos las regals de validación.
     $validator = v::key('username', v::alnum()->noWhitespace()->length(3, 20))
         ->key('email', v::email())
         ->key('password', v::length(6, 20))
         ->key('confirm_password', v::equals($datos['password']));
 
-    try {
+    try {//Ejecuta la validacion.
         $validator->assert($datos);
         $usuario = User::validateUserCreation($datos);
         var_dump($usuario);
@@ -195,8 +199,9 @@ class UserController implements ControllerInterface
         echo nl2br($e->getFullMessage());
         }
     }
-    */
-    function registroVerify(){  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
+   
+    function registroVerify()
+    {  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         /*$_POST['username'];
         $_POST['password'];*/
         /*   if (session_status() === PHP_SESSION_NONE) {
@@ -205,9 +210,7 @@ class UserController implements ControllerInterface
         var_dump($_POST);
 
         //Si es correcto el login.
-        $_SESSION['username']=$_POST['username'];
+        $_SESSION['username'] = $_POST['username'];
         var_dump($_SESSION);
     }
-
-
 }

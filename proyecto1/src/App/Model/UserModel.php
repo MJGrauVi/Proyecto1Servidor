@@ -9,9 +9,10 @@ use App\Enum\TipoUsuario;
 class UserModel
 {
 
-    public static function getAllUsers():array{
+    public static function getAllUsers(): array
+    {
 
-        $usuario1= new User(
+        $usuario1 = new User(
             Uuid::uuid4(),
             "admin",
             "1234",
@@ -19,7 +20,7 @@ class UserModel
             TipoUsuario::ADMIN
         );
         $usuario1->setEdad(54);
-        $usuario2= new User(
+        $usuario2 = new User(
             Uuid::uuid4(),
             "LauraBil",
             "laura",
@@ -27,7 +28,7 @@ class UserModel
             TipoUsuario::NORMAL
         );
         $usuario2->setEdad(25);
-        $usuario3= new User(
+        $usuario3 = new User(
             Uuid::uuid4(),
             "pabloM",
             "pablo",
@@ -35,12 +36,20 @@ class UserModel
             TipoUsuario::NORMAL
         );
         $usuario3->setEdad(18);
-        $usuarios=[$usuario1,$usuario2,$usuario3];
+        $usuarios = [$usuario1, $usuario2, $usuario3];
 
         return $usuarios;
-
     }
+    public static function getUserById(string $id): User
+    {
 
-
-
+        $usuario = new User(
+            Uuid::fromString($id),
+            "mariajose",
+            "123",
+            "titapetrel@gmail.com",
+            TipoUsuario::ADMIN
+        );
+        return $usuario;
+    }
 }

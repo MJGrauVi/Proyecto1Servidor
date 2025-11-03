@@ -1,5 +1,6 @@
 <?php
 require_once "vendor/autoload.php";
+include_once "env.php";
 require_once "funciones.php";
 
 session_start();
@@ -14,7 +15,6 @@ use App\Model\UserModel;
 
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
-
 //Rutas de Usuario APP/anterior
 //$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 //$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);

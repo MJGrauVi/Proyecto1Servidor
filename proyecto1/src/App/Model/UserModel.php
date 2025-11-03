@@ -5,42 +5,39 @@ namespace App\Model;
 use App\Class\User;
 use Ramsey\Uuid\Uuid;
 use App\Enum\TipoUsuario;
+use \PDO;
 
 class UserModel
 {
 
-    public static function getAllUsers(): array
+    public static function getAllUsers(): ?array
     {
+        try{
+            $conexion = new \PDO ("mysql:host=mariadb;dbname=proyecto", "mariajose", "gra200371");
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }catch(\PDOException $error){
+            echo $error;
+            return false;
+        }
 
-        $usuario1 = new User(
-            Uuid::uuid4(),
-            "admin",
-            "1234",
-            "margravid2@alu.edu.gva.es",
-            TipoUsuario::ADMIN
-        );
-        $usuario1->setEdad(54);
-        $usuario2 = new User(
-            Uuid::uuid4(),
-            "LauraBil",
-            "laura",
-            "laura@mail.com",
-            TipoUsuario::NORMAL
-        );
-        $usuario2->setEdad(25);
-        $usuario3 = new User(
-            Uuid::uuid4(),
-            "pabloM",
-            "pablo",
-            "pablom@mail.com",
-            TipoUsuario::NORMAL
-        );
-        $usuario3->setEdad(18);
-        $usuarios = [$usuario1, $usuario2, $usuario3];
+     $sql = "SELECT * FROM user";
+     $sentenciaPreparada = $conexion->prepare($sql);
+     $sentenciaPreparada->execute();
+     $resultado = $sentenciaPreparada->fetchAll(PDO::FETCH_ASSOC);
 
-        return $usuarios;
+     if($resultado){
+         $usuarios=[];
+         foreach ($resultado as $user) {
+            $usuarios[]=User::createFromArray($user);
+         }
+         return $usuarios;
+     }else{
+         return null;
+     }
+
+
     }
-    public static function getUserById(string $id): User
+    public static function getUserById(string $id):?User
     {
 
         $usuario = new User(
@@ -51,5 +48,43 @@ class UserModel
             TipoUsuario::ADMIN
         );
         return $usuario;
+    }
+
+
+
+public static function getUserByUsername(string $usename):?User{
+        return null;
+
+}
+public static function getUserByEmail(string $email):?User{
+        return null;
+
+}
+
+    public static function saveUser(User $user):bool {
+        TRY {
+            $conexion = new PDO("mysql:host=mariadb;dbname=proyecto", "mariajose", "gra200371");
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }catch(\PDOException $error){
+            echo $error;
+            return false;
+        }
+        $sql = "INSERT INTO user values (:uuid, :username, :password, :email, :edad, :tipo)";
+        $sentenciaPreparada = $conexion->prepare($sql);
+
+        $sentenciaPreparada->bindValue('uuid', $user->getUuid());
+        $sentenciaPreparada->bindValue('username', $user->getUsername());
+        $sentenciaPreparada->bindValue('password', $user->getPassword());
+        $sentenciaPreparada->bindValue('email', $user->getEmail());
+        $sentenciaPreparada->bindValue('edad', $user->getUuid());
+        $sentenciaPreparada->bindValue('tipo', $user->getTipo()->name);
+
+        $sentenciaPreparada->execute();
+        if($sentenciaPreparada->rowCount() > 0) {
+            return true;
+        }else{
+                return false;
+            }
+
     }
 }

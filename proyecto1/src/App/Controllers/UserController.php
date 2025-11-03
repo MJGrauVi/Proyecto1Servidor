@@ -33,14 +33,16 @@ class UserController implements ControllerInterface
 
     function store()
     {
-        var_dump($_POST);
-        //  $resultado= User::validateUserCreation($_POST);
-        //var_dump(User::validateUserCreation($_POST));
-        // if(is_array($resultado)){
-        //include_once ...vista.... /User/createUser.php
-        //  }else{
-        //      //TODO La validacion ha creado un usuario y tengo que guardarlo
-        //   }
+        /*var_dump($_POST);*/
+
+          $resultado= User::validateUserCreation($_POST);
+        var_dump(User::validateUserCreation($_POST));
+         if(is_array($resultado)){
+        include_once ...vista.... /User/createUser.php
+          }else{
+             //TODO
+
+           }
 
     }
 

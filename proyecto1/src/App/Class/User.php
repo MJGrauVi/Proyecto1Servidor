@@ -25,7 +25,7 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
         $this->password = $password;
         $this->email = $email;
         $this->tipo = $tipo;
-        $this->visualizaciones = [];
+       /* $this->visualizaciones = [];*/
     }
 
     public function getUuid(): UuidInterface
@@ -115,6 +115,10 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
             "tipo" => $this->tipo->name,
             "visualizaciones" => $this->visualizaciones
         ];
+    }
+    public static function createFromArray(array $UserData):User{
+
+
     }
 
     public static function validateUserCreation(array $userData): User|array

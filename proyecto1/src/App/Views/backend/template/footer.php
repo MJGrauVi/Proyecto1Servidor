@@ -1,21 +1,17 @@
+</main>
 </div>
-<footer class="site-footer">
-    <p><?= $titulo ?? 'Proyecto Base' ?> &copy; <?= date('Y') ?></p>
-</footer>
-
-<!-- Script mínimo para menú móvil -->
-<script>
-    (function(){
-        const btn = document.getElementById('navToggle');
-        const sidebar = document.getElementById('sidebar');
-        btn.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
-        // cerramos menú al navegar (útil en móviles)
-        sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-        }));
-    })();
-</script>
+</div>
+<script
+    src="<?=DIRECTORIO_JS_BACKEND?>bootstrap.bundle.min.js"
+    class="astro-vvvwv3sm"
+></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
+    integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
+    crossorigin="anonymous"
+    class="astro-vvvwv3sm"
+></script>
+<script src="<?=DIRECTORIO_JS_BACKEND?>dashboard.js" class="astro-vvvwv3sm"></script>
 </body>
 </html>
+

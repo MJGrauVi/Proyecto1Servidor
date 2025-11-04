@@ -33,23 +33,33 @@ class UserController implements ControllerInterface
 
     function store()
     {
-        /*var_dump($_POST);*/
-
           $resultado= User::validateUserCreation($_POST);
-        var_dump(User::validateUserCreation($_POST));
          if(is_array($resultado)){
-        include_once ...vista.... /User/createUser.php
+             //Tenemos datos con errores.
+        include_once DIRECTORIO_VISTAS_BACKEND."/User/createUser.php";
           }else{
-             //TODO
+             //La validacion ha creado un usuario correcto y hay que guardarlo.
+             $resultado->setPassword(password_hash($resultado->getPassword(),PASSWORD_DEFAULT));
+             UserModel::saveUser($resultado);
+
 
            }
 
     }
+    function edit($id)
+    {
 
+        // Recuperar los datos de un usuario del Model
+        $usuario = UserModel::getUserById($id);
+        //Llamar a la vista que se muestre los datos del usuario
+        include_once DIRECTORIO_VISTAS_BACKEND . "User/editUser.php";
+    }
     function update($id)
     {
         //Leo del fichero input los datos que me llegan de la peticion PUT.
-        parse_str(file_get_contents("php://input"), $editData);
+        $editData=json_decode(file_get_contents("php://input"), true);
+
+        var_dump($editData);
 
         //Añado el uuid a los datos que me han llegado en la peticion PUT.
         $editData['uuid'] = $id;
@@ -65,7 +75,7 @@ class UserController implements ControllerInterface
 
     function destroy($id)
     {
-        // TODO: Implement destroy() method.
+        // TODO: Llamamos a la función del modelo que nos permite borrar a un usuario
     }
 
     function create()
@@ -74,41 +84,17 @@ class UserController implements ControllerInterface
         //User/createuser.php
     }
 
-    function edit($id)
-    {
-        $Usuario =
-            // Recuperar los datos de un usuario del Model
-            include_once DIRECTORIO_VISTAS_BACKEND . "User/editUser.php";
-        //Llamar a la vista que se muestre los datos del usuario
-    }
+
 
     function verify()
     {  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
-        /*$_POST['username'];
-        $_POST['password'];*/
-
-
+        //Obtenemos los datos de la petición POST ***
 
         //Hay que encriptar el id del usuario.
         //$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
         //var_dump(password_verify($_POST['password'], $hash));
 
 
-        /*   if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }*/
-        var_dump($_POST);
-
-
-        $idUsuario = "kkkllgl";
-        //Petición a la base de datos para comprobar si el usuaria existe.
-
-
-        //Si es correcto el login.
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['uuid'] = $idUsuario;
-
-        var_dump($_SESSION);
     }
     function logout()
     {

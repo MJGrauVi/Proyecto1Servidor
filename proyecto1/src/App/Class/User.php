@@ -3,6 +3,7 @@
 namespace App\Class;
 
 use App\Enum\TipoUsuario;
+use App\Model\UserModel;
 use JsonSerializable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -119,8 +120,12 @@ class User implements JsonSerializable  //interfaz que obliga a implementar Json
         ];
     }
     public static function createFromArray(array $userData):User{
+        if(!isset($userData['uuid'])){
+            $userData['uuid']Uuid::uuid4();
+        }
+
         $usuario = new User(
-            Uuid::uuid4(),
+            Uuid::fromString($userData['uuid'])
             $userData["username"] ?? null,
             $userData["password"] ?? null,
             $userData["email"] ?? null,
@@ -169,13 +174,11 @@ return $usuario;
             return $errores->getMessages();
         }
 
-        //TODO Buscar el usuario en la base de datos y luego modificarlo
-        // isset($userData['username'])  $userData['username']??user->getUsername()
-        return new User(
-            Uuid::fromString($userData['uuid']),
-            $userData['username'],
-            '1234',
-         'pable@gmail.com',
-        TipoUsuario::stringToTipoUsuario($userData['tipo']??'normal'));
+
+        $usuarioAntiguo = UserModel::getUserById($userData['uuid']);
+        $usuarioAntiguo->setUsername($userData['username']??$usuarioAntiguo->getUsername());
+        $usuarioAntiguo-setEmail()
+        /*//TODO Buscar el usuario en la base de datos y luego modificarlo
+
     }
 }

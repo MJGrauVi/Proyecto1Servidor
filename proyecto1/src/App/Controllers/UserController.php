@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Class\User;
+use App\Enum\TipoUsuario;
 use App\Interface\ControllerInterface;
 use App\Model\UserModel;
 use Respect\Validation\Exceptions\NestedValidationException;
@@ -31,20 +32,25 @@ class UserController implements ControllerInterface
             include_once DIRECTORIO_VISTAS_BACKEND . "errorNoAdmin.php";
         }
     }
+     public function show($id)
+     {
+         $usuario = UserModel::getUserById($id);
+         include_once DIRECTORIO_VISTAS_BACKEND . "User/mostrarUser.php";
+     }
 
-    function show($id)
-    {
-        if (isset($_SESSION['user'])){
-            $usuario=UserModel::getUserById($_SESSION['user']->getUuid());
-            if ($_SESSION['user']->isAdmin()) {
-                return include_once DIRECTORIO_VISTAS_BACKEND . "User/mostrarUser.php";
+    /*    function show($id)
+        {
+            if (isset($_SESSION['user'])){
+                $usuario=UserModel::getUserById($_SESSION['user']->getUuid());
+                if ($_SESSION['user']->isAdmin()) {
+                    return include_once DIRECTORIO_VISTAS_BACKEND . "User/mostrarUser.php";
+                }else{
+                    return include_once DIRECTORIO_VISTAS_FRONTEND. "mostrarUser.php";
+                }
             }else{
-                return include_once DIRECTORIO_VISTAS_FRONTEND. "mostrarUser.php";
+                return "Ruta no disponible para tu usuario";
             }
-        }else{
-            return "Ruta no disponible para tu usuario";
-        }
-    }
+        }*/
     function create()
     {
         //return "formulario para crear usuario";
@@ -53,32 +59,18 @@ class UserController implements ControllerInterface
     function store()
     {
           $resultado= User::validateUserCreation($_POST);
-<<<<<<< HEAD
+
           if(is_array($resultado)){
               //Tenemos los datos con errores....
-              include_once DIRECTORIO_VISTAS_BACKEND . "User/createUser.php";
-=======
-         if(is_array($resultado)){
-             //Tenemos datos con errores.
-        include_once DIRECTORIO_VISTAS_BACKEND."/User/createUser.php";
+              include_once DIRECTORIO_VISTAS_BACKEND . "User/createUser.php
+      
           }else{
              //La validacion ha creado un usuario correcto y hay que guardarlo.
              $resultado->setPassword(password_hash($resultado->getPassword(),PASSWORD_DEFAULT));
              UserModel::saveUser($resultado);
 
->>>>>>> 795285ea7eb02711d994ce06fdd3ca7532d4a4b0
 
-          }else{
-             //La validación a creado un usuario correcto y tengo que guardarlo.
-              $resultado->setPassword(password_hash($resultado->getPassword(), PASSWORD_DEFAULT));
-              UserModel::saveUser($resultado);
-           }
 
-    }
-    function edit($id)
-    {
-
-<<<<<<< HEAD
     function edit($id)
     {
         // Recuperar los datos de un usuario del Modelo
@@ -87,15 +79,6 @@ class UserController implements ControllerInterface
         //Llamar a la vista que me muestre los datos del usuario
         include_once DIRECTORIO_VISTAS_BACKEND."User/editUser.php";
 
-    }
-
-=======
-        // Recuperar los datos de un usuario del Model
-        $usuario = UserModel::getUserById($id);
-        //Llamar a la vista que se muestre los datos del usuario
-        include_once DIRECTORIO_VISTAS_BACKEND . "User/editUser.php";
-    }
->>>>>>> 795285ea7eb02711d994ce06fdd3ca7532d4a4b0
     function update($id)
     {
         //Leo del fichero input los datos que me llegan de la peticion PUT.
@@ -121,19 +104,30 @@ class UserController implements ControllerInterface
     }
 
 
-<<<<<<< HEAD
-=======
+    function verify())
+    {
+        //Leo del fichero input los datos que me llegan de la peticion PUT.
 
->>>>>>> 795285ea7eb02711d994ce06fdd3ca7532d4a4b0
-
-    function verify()
         //Obtenemos los datos de la peticion post.
-    {  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
+     //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         //Obtenemos los datos de la petición POST ***
 
         //Hay que encriptar el id del usuario.
-        //$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        //var_dump(password_verify($_POST['password'], $hash));
+        $usuario = UserModel::getUserByUsername($_POST["username"]);
+        $_SESSION['user']=$usuario;
+        if(password_verify($_POST["password"], $usuario->getPassword())){
+            $_SESSION['user']=$usuario;
+            if($usuario->isAdmin()){
+                //Tenemos a un usuario administrador
+                header('Location:/user');
+
+            }else{
+                $error = "El usuario o contraseña incorrecto";
+
+            }
+
+        }
+    }
 
 
     }

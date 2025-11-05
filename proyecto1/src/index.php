@@ -15,6 +15,10 @@ use App\Model\UserModel;
 
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
+
+$router->get('/', function ()){
+    return 'Hola';
+};
 //Rutas de Usuario APP/anterior
 //$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 //$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);

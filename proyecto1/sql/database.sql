@@ -12,3 +12,5 @@ create table user(
 alter table user add constraint pk_user primary key (uuid);
 alter table user add constraint uk_user unique (username);
 alter table user add constraint uk_user_email unique (email);
+
+alter table user add_constraint ck_user_tipo_usuario check (tipousuario in('ADMIN', 'NORMAL', 'ANUNCIOS'));

@@ -3,18 +3,19 @@
 namespace App\Class;
 
 use App\Enum\TipoUsuario;
+use JsonSerializable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Respect\Validation\Validator as v;
 
-class User implements \JsonSerializable  //interfaz que obliga a implementar JsonSerializable():mixed
+class User implements JsonSerializable  //interfaz que obliga a implementar JsonSerializable():mixed
 {
     private UuidInterface $uuid;
     private string $username;
     private string $password;
     private string $email;
-    private int $edad;
+    private ?int $edad;
     private array $visualizaciones;
     private TipoUsuario $tipo;
 
@@ -25,7 +26,7 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
         $this->password = $password;
         $this->email = $email;
         $this->tipo = $tipo;
-       /* $this->visualizaciones = [];*/
+        $this->visualizaciones = [];
     }
 
     public function getUuid(): UuidInterface
@@ -107,6 +108,7 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
 
 
     public function jsonSerialize(): mixed
+    //Convierte lo que devuelve j_son_encode($user) en formato de salida JSON válido.
     {
         return [
             "username" => $this->username,
@@ -116,7 +118,23 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
             "visualizaciones" => $this->visualizaciones
         ];
     }
-    public static function createFromArray(array $UserData):User{
+    public static function createFromArray(array $userData):User{
+        $usuario = new User(
+            Uuid::uuid4(),
+            $userData["username"] ?? null,
+            $userData["password"] ?? null,
+            $userData["email"] ?? null,
+        );
+    //Asignamos edad y tipo si existen.
+        if(isset($userData["edad"])){
+            $usuario->setEdad($userData["edad"]);
+        }
+        if(isset($userData["tipo"])){
+            $usuario->setTipo(TipoUsuario::stringToTipoUsuario($userData["tipo"] ?? 'NORMAL'));
+        }
+
+
+return $usuario;
 
 
     }
@@ -124,33 +142,23 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
     public static function validateUserCreation(array $userData): User|array
     {
         try {
-            $validator = v::key('username', v::stringType())
+            v::key('username', v::stringType())
                 ->key('password', v::stringType()->length(3, 16))
                 ->key('email', v::email())
                 ->key('edad', v::intVal()->min(18), false)
-                ->key('tipo', v::in(['normal', 'anuncios', 'admin']),false);
+                ->key('tipo', v::in(['normal', 'anuncios', 'admin']),false)
+            ->assert($userData);
 
-            $validator->assert($userData);
         } catch (NestedValidationException $errores) {
             return $errores->getMessages();
         }
 
-        $usuario = new User(
-            Uuid::uuid4(),
-            $userData['username'],
-            $userData['password'],
-            $userData['email'],
-            //TipoUsuario::stringToTipoUsuario($userData['tipo'])  No debe estar aquí en el constructor y eliminarlo bajo.
-        );
-
-        $usuario->setEdad($userData['edad']??18);
-        $usuario->setTipo(TipoUsuario::stringToTipoUsuario($userData['tipo']??"Normal"));
-
-        return $usuario;
+        return User::createFromArray($userData);
     }
+
     public static function validateUserEdit(array $userData):User | array {
         try {
-            v::key('uuid', V::uuid())
+            v::key('uuid', v::uuid())
                  ->optional(v::key('username', v::stringType()))
                 ->optional(v::key ('password', v::stringType()->length(3, 16)))
                 ->optional(v::key('email', v::email()))
@@ -161,12 +169,13 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
             return $errores->getMessages();
         }
 
-        //TODO buscar el usuari.
+        //TODO Buscar el usuario en la base de datos y luego modificarlo
+        // isset($userData['username'])  $userData['username']??user->getUsername()
         return new User(
             Uuid::fromString($userData['uuid']),
             $userData['username'],
             '1234',
          'pable@gmail.com',
-        TipoUsuario::stringToTipoUsuario($userData['tipo']));
+        TipoUsuario::stringToTipoUsuario($userData['tipo']??'normal'));
     }
 }

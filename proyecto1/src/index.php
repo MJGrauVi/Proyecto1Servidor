@@ -31,6 +31,8 @@ $router->get('/user/create/', [UserController::class, 'create']);
 $router->put('/user', [UserController::class, 'destroy']);
 $router->get('/user/{id}/edit/', [UserController::class, 'edit']);
 
+//Rutas para la aplicacion web visual
+
 //publicacion
 
 $router->get('/publicacion', function () {
@@ -43,9 +45,6 @@ $router->get('/publicacion', function () {
 $router->get('/user/publicacion', function () {
     return "Procesando publicacion";
 });
-
-
-
 
 //Rutas de Servicio  API REST
 $router->get('/api/user', [UserController::class, 'index']);

@@ -14,35 +14,64 @@ class UserController implements ControllerInterface
     function index() //El router Phroute instancia el controlador automáticamente en el index.php con "echo $dispatcher->dispatch($method, $uri);"
     //entonce no hace falta public static en la función index.
     {
+
+        if(isset($_SESSION['user']) && $_SESSION['user'] -> isAdmin ()){
+            //Recuperar todos los usuarios de BBDD.
+
         $usuarios = UserModel::getAllUsers();
+        //Llamar a la vista pera que muestre los usuarios.
+
         //include_once __DIR__ . '/../Views/admin/allusers.php';
+       // include_once DIRECTORIO_VISTAS_BACKEND . "User/allusers.php";
+       // extract(['usuarios' => $usuarios]);
         include_once DIRECTORIO_VISTAS_BACKEND . "User/allusers.php";
 
-        /*header('Content-Type: application/json');
-        echo Json_encode($usuarios);*/
+    }else{
+            $error = "No tiene permisos para acceder a esta pagina";
+            include_once DIRECTORIO_VISTAS_BACKEND . "errorNoAdmin.php";
+        }
     }
 
     function show($id)
     {
-        if (isset($_SESSION['username'])) {
-        } else {
-            //Muestro una vista de no se puede acceder a estos datos
+        if (isset($_SESSION['user'])){
+            $usuario=UserModel::getUserById($_SESSION['user']->getUuid());
+            if ($_SESSION['user']->isAdmin()) {
+                return include_once DIRECTORIO_VISTAS_BACKEND . "User/mostrarUser.php";
+            }else{
+                return include_once DIRECTORIO_VISTAS_FRONTEND. "mostrarUser.php";
+            }
+        }else{
+            return "Ruta no disponible para tu usuario";
         }
-        return "Estos son los datod de usuario $id";
     }
-
+    function create()
+    {
+        //return "formulario para crear usuario";
+        return include_once DIRECTORIO_VISTAS_BACKEND . "User/createUser.php";
+    }
     function store()
     {
-        /*var_dump($_POST);*/
-
           $resultado= User::validateUserCreation($_POST);
-        var_dump(User::validateUserCreation($_POST));
-         if(is_array($resultado)){
-        include_once ...vista.... /User/createUser.php
-          }else{
-             //TODO
+          if(is_array($resultado)){
+              //Tenemos los datos con errores....
+              include_once DIRECTORIO_VISTAS_BACKEND . "User/createUser.php";
 
+          }else{
+             //La validación a creado un usuario correcto y tengo que guardarlo.
+              $resultado->setPassword(password_hash($resultado->getPassword(), PASSWORD_DEFAULT));
+              UserModel::saveUser($resultado);
            }
+
+    }
+
+    function edit($id)
+    {
+        // Recuperar los datos de un usuario del Modelo
+        $usuario = UserModel::getUserById($id);
+
+        //Llamar a la vista que me muestre los datos del usuario
+        include_once DIRECTORIO_VISTAS_BACKEND."User/editUser.php";
 
     }
 
@@ -68,21 +97,10 @@ class UserController implements ControllerInterface
         // TODO: Implement destroy() method.
     }
 
-    function create()
-    {
-        return "formulario para crear usuario";
-        //User/createuser.php
-    }
 
-    function edit($id)
-    {
-        $Usuario =
-            // Recuperar los datos de un usuario del Model
-            include_once DIRECTORIO_VISTAS_BACKEND . "User/editUser.php";
-        //Llamar a la vista que se muestre los datos del usuario
-    }
 
     function verify()
+        //Obtenemos los datos de la peticion post.
     {  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         /*$_POST['username'];
         $_POST['password'];*/

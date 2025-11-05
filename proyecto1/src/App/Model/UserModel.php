@@ -9,57 +9,93 @@ use \PDO;
 
 class UserModel
 {
+    /* //Evita el null del foreach.
+       public static function getAllUsers(): array
+    {
+        try {
+            $conexion = new PDO("mysql:host=mariadb;dbname=proyecto", "mariajose", "2222");
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            $sql = "SELECT * FROM user";
+            $sentenciaPreparada = $conexion->prepare($sql);
+            $sentenciaPreparada->execute();
+            $resultado = $sentenciaPreparada->fetchAll(PDO::FETCH_ASSOC);
+
+            $usuarios = [];
+            foreach ($resultado as $user) {
+                $usuarios[] = User::createFromArray($user);
+            }
+
+            return $usuarios;
+
+        } catch (\PDOException $error) {
+            // Puedes loguear el error si lo necesitas
+            return []; // Devuelve array vacío en caso de error
+        }
+    }*/
+
+//Codigo de Miguel Angel, no me devuelve la vista y lanza error porque el forEach me devuelve null.
     public static function getAllUsers(): ?array
     {
-        try{
-            $conexion = new \PDO ("mysql:host=mariadb;dbname=proyecto", "mariajose", "gra200371");
+        try {
+            $conexion = new PDO ("mysql:host=mariadb;dbname=proyecto", "mariajose", "gra200371");
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }catch(\PDOException $error){
-            echo $error;
-            return false;
+        } catch (\PDOException $error) {
+            echo $error; //Para produccion cambiar a error_log()
+            return null;
+        }
+        //Prepara y ejecuta la consulta.
+        $sql = "SELECT * FROM user";
+
+        $sentenciaPreparada = $conexion->prepare($sql);
+
+        $sentenciaPreparada->execute();
+
+        $resultado = $sentenciaPreparada->fetchAll(PDO::FETCH_ASSOC);//Devuelve array asociativo.
+
+        //Procesa el resultado obtenido.
+        if ($resultado) {
+            $usuarios = []; //Creo un array vacio y segú se creen usuarios se van añadiendo al final del array.
+            foreach ($resultado as $user) {
+                $usuarios[] = User::createFromArray($user); //convierte cada fila en un objeto User usando createFromArray()
+            }
+            return $usuarios; //Devuelve el array de objetos.
+        } else {
+            return null;
         }
 
-     $sql = "SELECT * FROM user";
-     $sentenciaPreparada = $conexion->prepare($sql);
-     $sentenciaPreparada->execute();
-     $resultado = $sentenciaPreparada->fetchAll(PDO::FETCH_ASSOC);
-
-     if($resultado){
-         $usuarios=[];
-         foreach ($resultado as $user) {
-            $usuarios[]=User::createFromArray($user);
-         }
-         return $usuarios;
-     }else{
-         return null;
-     }
-
-
-    }
-    public static function getUserById(string $id):?User
-    {
-
-        $usuario = new User(
-            Uuid::fromString($id),
-            "mariajose",
-            "123",
-            "titapetrel@gmail.com",
-            TipoUsuario::ADMIN
-        );
-        return $usuario;
     }
 
+ public static function getUserById(string $id):?User{
+     return null;
+ }
 
+    public static function getUserByUsername(string $username):?User{
 
-public static function getUserByUsername(string $usename):?User{
         return null;
 
-}
-public static function getUserByEmail(string $email):?User{
+    }
+
+    public static function getUserByEmail(string $email):?User{
+
         return null;
 
-}
+    }
+
+    public static function deleteAllUsers():bool{
+
+        return true;
+    }
+
+    public static function deleteUser(User $user):bool{
+
+        return true;
+    }
+
+    public static function updateUser(User $user):?User{
+
+        return null;
+    }
 
     public static function saveUser(User $user):bool {
         TRY {

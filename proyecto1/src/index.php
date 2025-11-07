@@ -16,9 +16,7 @@ use App\Model\UserModel;
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
 
-$router->get('/', function ()){
-    return 'Hola';
-};
+$router->get('/', function ())
 //Rutas de Usuario APP/anterior
 //$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 //$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
@@ -27,9 +25,9 @@ $router->get('/', function ()){
 $router->filter('auth', function (){
     if(isset($_SESSION['user']->getUsername().'</br> Estoy en la página principal'{
 }else{
-        retur false;
+        return false;
     }
-}
+};
 
 //Definir los filtros de las rutas
 //Rutas asocialdas a la vista de usuario

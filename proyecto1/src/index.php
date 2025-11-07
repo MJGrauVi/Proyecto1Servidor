@@ -23,6 +23,15 @@ $router->get('/', function ()){
 //$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 //$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
 
+
+$router->filter('auth', function (){
+    if(isset($_SESSION['user']->getUsername().'</br> Estoy en la página principal'{
+}else{
+        retur false;
+    }
+}
+
+//Definir los filtros de las rutas
 //Rutas asocialdas a la vista de usuario
 $router->get('/user', [UserController::class, 'index']);
 $router->post('/user/', [UserController::class, 'store']);
@@ -33,8 +42,7 @@ $router->post('/user/registro', [UserController::class, 'registroVerify']); // p
 $router->get('/user/logout', [UserController::class, 'logout']); //Eliminar un ususario.
 $router->get('/user/create/', [UserController::class, 'create']);
 $router->put('/user', [UserController::class, 'destroy']);
-$router->get('/user/{id}/edit/', [UserController::class, 'edit']);
-
+$router->get('/user/{id}/edit/', [UserController::class, 'edit'],["before" => 'auth']);//Añadimos filtro.
 //Rutas para la aplicacion web visual
 
 //publicacion

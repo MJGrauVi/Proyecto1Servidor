@@ -59,18 +59,32 @@ class UserController implements ControllerInterface
     function store()
     {
           $resultado= User::validateUserCreation($_POST);
-
+<<<<<<< HEAD
           if(is_array($resultado)){
               //Tenemos los datos con errores....
-              include_once DIRECTORIO_VISTAS_BACKEND . "User/createUser.php
-      
+              include_once DIRECTORIO_VISTAS_BACKEND . "User/createUser.php";
+=======
+         if(is_array($resultado)){
+             //Tenemos datos con errores.
+        include_once DIRECTORIO_VISTAS_BACKEND."/User/createUser.php";
           }else{
              //La validacion ha creado un usuario correcto y hay que guardarlo.
              $resultado->setPassword(password_hash($resultado->getPassword(),PASSWORD_DEFAULT));
              UserModel::saveUser($resultado);
 
+>>>>>>> 795285ea7eb02711d994ce06fdd3ca7532d4a4b0
 
+          }else{
+             //La validación a creado un usuario correcto y tengo que guardarlo.
+              $resultado->setPassword(password_hash($resultado->getPassword(), PASSWORD_DEFAULT));
+              UserModel::saveUser($resultado);
+           }
 
+    }
+    function edit($id)
+    {
+
+<<<<<<< HEAD
     function edit($id)
     {
         // Recuperar los datos de un usuario del Modelo
@@ -79,6 +93,15 @@ class UserController implements ControllerInterface
         //Llamar a la vista que me muestre los datos del usuario
         include_once DIRECTORIO_VISTAS_BACKEND."User/editUser.php";
 
+    }
+
+=======
+        // Recuperar los datos de un usuario del Model
+        $usuario = UserModel::getUserById($id);
+        //Llamar a la vista que se muestre los datos del usuario
+        include_once DIRECTORIO_VISTAS_BACKEND . "User/editUser.php";
+    }
+>>>>>>> 795285ea7eb02711d994ce06fdd3ca7532d4a4b0
     function update($id)
     {
         //Leo del fichero input los datos que me llegan de la peticion PUT.
@@ -104,10 +127,12 @@ class UserController implements ControllerInterface
     }
 
 
-    function verify())
-    {
-        //Leo del fichero input los datos que me llegan de la peticion PUT.
+<<<<<<< HEAD
+=======
 
+>>>>>>> 795285ea7eb02711d994ce06fdd3ca7532d4a4b0
+
+    function verify()
         //Obtenemos los datos de la peticion post.
      //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         //Obtenemos los datos de la petición POST ***

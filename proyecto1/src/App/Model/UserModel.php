@@ -72,9 +72,36 @@ class UserModel
 
     public static function getUserByUsername(string $username):?User{
 
-        return null;
+        try {
+            $conexion = new PDO("mysql:host=mariadb;dbname=proyecto", "mariajose", "gra200371");
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }catch (\PDOException $error){
+            echo $error;
+            return null;
+        }
+
+        //$sql = "SELECT * FROM user where username=:username";
+
+        $sql = "SELECT * FROM user where username=?";
+        $sentenciaPreparada = $conexion->prepare($sql);
+
+        $sentenciaPreparada->bindValue(1,$username,PDO::PARAM_STR);
+
+        $sentenciaPreparada->execute();
+
+        $resultado = $sentenciaPreparada->fetch(PDO::FETCH_ASSOC);
+
+        if($resultado){
+            $usuario = User::createFromArray($resultado);
+            return $usuario;
+        }else{
+            return null;
+        }
 
     }
+
+
+
 
     public static function getUserByEmail(string $email):?User{
 

@@ -86,10 +86,13 @@ body {
   border-radius: var(--radius);
   /*flex-shrink: 0;*/
 }
-/*
+
 .sidebar ul {
   list-style: none;
-}*/
+}
+ul{
+  list-style: none;
+}
 
 .sidebar li {
   margin: 0.6rem 0;

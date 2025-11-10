@@ -1,3 +1,3 @@
 <header>
-<h1>Proyecto Base - Web Pública</h1>
+<h1>Proyecto Base - Administración</h1>
 </header>

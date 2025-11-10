@@ -12,24 +12,47 @@ use App\Controllers\UserController;
 use App\Controllers\MovieController;
 use App\Controllers\DirectorController;
 use App\Model\UserModel;
+use Ramsey\Uuid\Uuid;
+use App\Class\User;
 
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
 
-$router->get('/', function ())
+
+//Definir los filtros de las rutas.
+
+//Si no estas logueado te redirige a la vista del login.
+$router->filter('auth', function (){
+    if(isset($_SESSION['user'])){
+        return true;
+    }else{
+        header('Location: /login');
+        return false;
+    }
+});
+
+//Si estar registrado y eres de tipo usuarios permite el acceso sino redirige vista error.
+$router->filter('admin', function(){
+    if(isset($_SESSION['user']) && $_SESSION['user']->isAdmin()){
+        return true;
+    }else{
+        header('Location: /error');
+        return false;
+    }
+});
+
+
+$router->get('/error', function (){
+    $error="No puedes accedes a este apartado";
+    include_once "views/backend/errorNoAdmin.php";
+});
+
 //Rutas de Usuario APP/anterior
 //$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
 //$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
 
 
-$router->filter('auth', function (){
-    if(isset($_SESSION['user']->getUsername().'</br> Estoy en la página principal'{
-}else{
-        return false;
-    }
-};
 
-//Definir los filtros de las rutas
 //Rutas asocialdas a la vista de usuario
 $router->get('/user', [UserController::class, 'index']);
 $router->post('/user/', [UserController::class, 'store']);
@@ -37,8 +60,8 @@ $router->get('/login', [UserController::class, 'show_login']); //Muestra el form
 $router->post('/user/login', [UserController::class, 'verify']); //procesa el formularioLogin
 $router->get('/registro', [UserController::class, 'show_registro']); // muestra el formularioRegistro
 $router->post('/user/registro', [UserController::class, 'registroVerify']); // procesa el formularioRegistro
-$router->get('/user/logout', [UserController::class, 'logout']); //Eliminar un ususario.
-$router->get('/user/create/', [UserController::class, 'create']);
+$router->get('/user/logout', [UserController::class, 'logout'],['before' =>'auth']); //Eliminar un ususario.
+$router->get('/user/create/', [UserController::class, 'create'],['before' =>'auth']);
 $router->put('/user', [UserController::class, 'destroy']);
 $router->get('/user/{id}/edit/', [UserController::class, 'edit'],["before" => 'auth']);//Añadimos filtro.
 //Rutas para la aplicacion web visual
@@ -93,13 +116,6 @@ $router->get('/password', function () {
 });
 
 
-//mo
-$router->get('/administracion/movie/create', function () {
-    include_once "admin/views/add-pelicula.php";
-});
-$router->get('/administracion/movie/{$id}/edit', function ($id) {
-    include_once "admin/views/edit-pelicula.php";
-});
 // PANEL ADMIN
 $router->get('/administrador', function () {
     $titulo = "Panel Administrador";
@@ -111,25 +127,16 @@ $router->get('/administrador', function () {
     include "vistas/admin/template/footer.php";
 });
 
-
-//Rutas de trabajo con peliculas
-$router->post('/movie', function () {
+//Rutas de trabajo con publicacion
+$router->post('/publicacion', function () {
     var_dump($_POST);
     var_dump($_FILES);
 
     mkdir(__DIR__ . "uploader");
 });
-$router->delete('/movie/{id}', function ($id) {
-    //ruta para el borrado de una pelicula
+$router->delete('/publicacion/{id}', function ($id) {
+    //ruta para el borrado de una publicación.
 });
-
-
-//$router->get('/movie', function () {
-//Devuelve los datos de todas las peliculas
-//});
-//$router->get('/movie/{id}', function ($id) {
-//Devuelve los datos de una pelicula
-//});
 
 // Dispatcher
 use Phroute\Phroute\Dispatcher;

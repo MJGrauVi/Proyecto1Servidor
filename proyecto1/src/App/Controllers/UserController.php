@@ -11,7 +11,6 @@ use Respect\Validation\Validator as v;
 
 class UserController implements ControllerInterface
 {
-
     function index() //El router Phroute instancia el controlador automáticamente en el index.php con "echo $dispatcher->dispatch($method, $uri);"
     //entonce no hace falta public static en la función index.
     {
@@ -22,9 +21,6 @@ class UserController implements ControllerInterface
         $usuarios = UserModel::getAllUsers();
         //Llamar a la vista pera que muestre los usuarios.
 
-        //include_once __DIR__ . '/../Views/admin/allusers.php';
-       // include_once DIRECTORIO_VISTAS_BACKEND . "User/allusers.php";
-       // extract(['usuarios' => $usuarios]);
         include_once DIRECTORIO_VISTAS_BACKEND . "User/allusers.php";
 
     }else{
@@ -32,7 +28,7 @@ class UserController implements ControllerInterface
             include_once DIRECTORIO_VISTAS_BACKEND . "errorNoAdmin.php";
         }
     }
-     public function show($id)
+     function show($id)
      {
          $usuario = UserModel::getUserById($id);
          include_once DIRECTORIO_VISTAS_BACKEND . "User/mostrarUser.php";
@@ -51,36 +47,53 @@ class UserController implements ControllerInterface
                 return "Ruta no disponible para tu usuario";
             }
         }*/
+
+
+        function store()
+        {
+            $resultado= User::validateUserCreation($_POST);
+
+            if(is_array($resultado)){
+                //Tenemos datos con errores.
+                include_once DIRECTORIO_VISTAS_BACKEND."/User/createUser.php";
+            }else{
+                //La validacion ha creado un usuario correcto y hay que guardarlo.
+                $resultado->setPassword(password_hash($resultado->getPassword(),PASSWORD_DEFAULT));
+                UserModel::saveUser($resultado);
+            }
+        }
+
+
+        function update($id)
+        {
+                //Leo del fichero input los datos que me llegan de la peticion PUT.
+                $editData=json_decode(file_get_contents("php://input"), true);
+
+                var_dump($editData);
+
+                //Añado el uuid a los datos que me han llegado en la peticion PUT.
+                $editData['uuid'] = $id;
+
+                //Valido los datos que han llegado en la peticion PUT.
+                $usuario = User::validateUserEdit($editData);
+
+                //TODO Guardo en usuario actualizado en la BBDD.
+
+                //Muestro los datos del usuario o los errores en la petición si los hay
+                var_dump($usuario);
+        }
+    function destroy($id)
+    {
+        // TODO: Llamamos a la función del modelo que nos permite borrar a un usuario
+    }
     function create()
     {
         //return "formulario para crear usuario";
         return include_once DIRECTORIO_VISTAS_BACKEND . "User/createUser.php";
     }
-    function store()
-    {
-          $resultado= User::validateUserCreation($_POST);
 
-         if(is_array($resultado)){
-             //Tenemos datos con errores.
-        include_once DIRECTORIO_VISTAS_BACKEND."/User/createUser.php";
-          }else{
-             //La validacion ha creado un usuario correcto y hay que guardarlo.
-             $resultado->setPassword(password_hash($resultado->getPassword(),PASSWORD_DEFAULT));
-             UserModel::saveUser($resultado);
-
->>>>>>> 795285ea7eb02711d994ce06fdd3ca7532d4a4b0
-
-          }else{
-             //La validación a creado un usuario correcto y tengo que guardarlo.
-              $resultado->setPassword(password_hash($resultado->getPassword(), PASSWORD_DEFAULT));
-              UserModel::saveUser($resultado);
-           }
-
-
-    }
     function edit($id)
     {
-
 
         // Recuperar los datos de un usuario del Model
         $usuario = UserModel::getUserById($id);
@@ -88,32 +101,7 @@ class UserController implements ControllerInterface
         include_once DIRECTORIO_VISTAS_BACKEND . "User/editUser.php";
     }
 
-    function update($id)
-    {
-        //Leo del fichero input los datos que me llegan de la peticion PUT.
-        $editData=json_decode(file_get_contents("php://input"), true);
-
-        var_dump($editData);
-
-        //Añado el uuid a los datos que me han llegado en la peticion PUT.
-        $editData['uuid'] = $id;
-
-        //Valido los datos que han llegado en la peticion PUT.
-        $usuario = User::validateUserEdit($editData);
-
-        //TODO Guardo en usuario actualizado en la BBDD.
-
-        //Muestro los datos del usuario o los errores en la petición si los hay
-        var_dump($usuario);
-    }
-
-    function destroy($id)
-    {
-        // TODO: Llamamos a la función del modelo que nos permite borrar a un usuario
-    }
-
-
-    function verify(){
+            function verify(){
         //Obtenemos los datos de la peticion post.
      //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         //Obtenemos los datos de la petición POST ***
@@ -134,9 +122,6 @@ class UserController implements ControllerInterface
 
         }
     }
-
-
-    }
     function logout()
     {
         session_destroy();
@@ -149,8 +134,10 @@ class UserController implements ControllerInterface
     }
     function show_registro()
     {
-        $contenido = "";
+       //ok muestra el formulario de registro ok//
         include_once "App/Views/frontend/registro.php";
+
+
     }
 
    /*  function registro()
@@ -231,11 +218,11 @@ class UserController implements ControllerInterface
    
     function registroVerify()
     {  //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
-        /*$_POST['username'];
-        $_POST['password'];*/
-        /*   if (session_status() === PHP_SESSION_NONE) {
+        $_POST['username'];
+        $_POST['password'];
+           if (session_status() === PHP_SESSION_NONE) {
                session_start();
-           }*/
+           }
         var_dump($_POST);
 
         //Si es correcto el login.

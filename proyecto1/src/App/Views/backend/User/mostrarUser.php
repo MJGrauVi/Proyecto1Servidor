@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Mostrar datos usuario</title>
-  </head>
-  <body>
+<?php
+$titulo = "Datos Usuario";
+
+include_once(__DIR__ . '/../template/head.php');
+
+include_once(__DIR__ . '/../template/header.php');
+
+include_once (__DIR__ .'/../template/aside.php');
+
+?>
     <div class="container">
       <div class="mb-3">
         <ul class="list-group">
@@ -100,6 +103,4 @@
           window.location.replace("http://localhost:8080/user");
         }
       </script>
-    </div>
-  </body>
-</html>
+        include_once (__DIR__ .'/../template/aside.php');

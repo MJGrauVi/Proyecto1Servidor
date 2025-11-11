@@ -9,8 +9,6 @@ session_start();
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\RouteCollector;
 use App\Controllers\UserController;
-use App\Controllers\MovieController;
-use App\Controllers\DirectorController;
 use App\Model\UserModel;
 use Ramsey\Uuid\Uuid;
 use App\Class\User;
@@ -41,17 +39,10 @@ $router->filter('admin', function(){
     }
 });
 
-
 $router->get('/error', function (){
     $error="No puedes accedes a este apartado";
     include_once "views/backend/errorNoAdmin.php";
 });
-
-//Rutas de Usuario APP/anterior
-//$router->get('/login', ['App\Controllers\AuthController', 'mostrarLogin']);
-//$router->post('/login', ['App\Controllers\AuthController', 'procesarLogin']);
-
-
 
 //Rutas asocialdas a la vista de usuario
 $router->get('/user', [UserController::class, 'index']);
@@ -71,10 +62,8 @@ $router->get('/user/{id}/edit/', [UserController::class, 'edit'],["before" => 'a
 $router->get('/publicacion', function () {
     $titulo = "Crear Publicacion";
     $contenido = "Creando.....";
-
     include_once "App/Views/frontend/add-publicacion.php";
 });
-
 $router->get('/user/publicacion', function () {
     return "Procesando publicacion";
 });

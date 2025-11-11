@@ -10,13 +10,13 @@ use Ramsey\Uuid\UuidInterface;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Respect\Validation\Validator as v;
 
-class User implements JsonSerializable  //interfaz que obliga a implementar JsonSerializable():mixed
+class User implements \JsonSerializable  //interfaz que obliga a implementar JsonSerializable():mixed
 {
     private UuidInterface $uuid;
     private string $username;
     private string $password;
     private string $email;
-    private ?int $edad;
+    private int $edad;
     private array $visualizaciones;
     private TipoUsuario $tipo;
 
@@ -107,6 +107,10 @@ class User implements JsonSerializable  //interfaz que obliga a implementar Json
         return $this;
     }
 
+    public function isAdmin():bool{
+        $retorno =  $this->tipo == TipoUsuario::ADMIN?true:false;
+            return $retorno;
+    }
 
     public function jsonSerialize(): mixed
     //Convierte lo que devuelve j_son_encode($user) en formato de salida JSON válido.
@@ -121,26 +125,21 @@ class User implements JsonSerializable  //interfaz que obliga a implementar Json
     }
     public static function createFromArray(array $userData):User{
         if(!isset($userData['uuid'])){
-            $userData['uuid']Uuid::uuid4();
+            $userData['uuid']=Uuid::uuid4()->toString();
         }
 
         $usuario = new User(
-            Uuid::fromString($userData['uuid'])
-            $userData["username"] ?? null,
-            $userData["password"] ?? null,
+            Uuid::fromString($userData['uuid']),
+            $userData["username"]?? null,
+            $userData["password"]?? null,
             $userData["email"] ?? null,
         );
     //Asignamos edad y tipo si existen.
-        if(isset($userData["edad"])){
+
             $usuario->setEdad($userData["edad"]);
-        }
-        if(isset($userData["tipo"])){
-            $usuario->setTipo(TipoUsuario::stringToTipoUsuario($userData["tipo"] ?? 'NORMAL'));
-        }
+            $usuario->setTipo(TipoUsuario::stringToTipoUsuario($userData["tipo"]));
 
-
-return $usuario;
-
+    return $usuario;
 
     }
 
@@ -150,9 +149,9 @@ return $usuario;
             v::key('username', v::stringType())
                 ->key('password', v::stringType()->length(3, 16))
                 ->key('email', v::email())
-                ->key('edad', v::intVal()->min(18), false)
-                ->key('tipo', v::in(['normal', 'anuncios', 'admin']),false)
-            ->assert($userData);
+                ->key('edad', v::intVal()->min(18), true)
+                ->key('tipo', v::in(['normal', 'anuncios', 'admin']),true)
+                ->assert($userData);
 
         } catch (NestedValidationException $errores) {
             return $errores->getMessages();
@@ -162,23 +161,25 @@ return $usuario;
     }
 
     public static function validateUserEdit(array $userData):User | array {
-        try {
+        try {   //Con optional valida solo lo que mandan, no es necesario enviar los datos que no se van a modificas.
             v::key('uuid', v::uuid())
-                 ->optional(v::key('username', v::stringType()))
+                ->optional(v::key('username', v::stringType()))
                 ->optional(v::key ('password', v::stringType()->length(3, 16)))
                 ->optional(v::key('email', v::email()))
                 ->optional(v::key('edad', v::intVal()->min(18)))
                 ->optional(v::key('tipo', v::in(['normal', 'anuncios', 'admin'])))->assert($userData);
         } catch (NestedValidationException $errores) {
-
             return $errores->getMessages();
         }
-
-
         $usuarioAntiguo = UserModel::getUserById($userData['uuid']);
-        $usuarioAntiguo->setUsername($userData['username']??$usuarioAntiguo->getUsername());
-        $usuarioAntiguo-setEmail()
-        /*//TODO Buscar el usuario en la base de datos y luego modificarlo
 
+        $usuarioAntiguo->setUsername($userData['username']??$usuarioAntiguo->getUsername());
+        $usuarioAntiguo-setPassword(password_hash($userData['password'], PASSWORD_DEFAULT)??$usuarioAntiguo->getPassword());
+        $usuarioAntiguo->setEmail($userData['email']??$usuarioAntiguo->getEmail());
+        $usuarioAntiguo->setEdad($userDate['edad']??$usuarioAntiguo->getEdad());
+        $usuarioAntiguo->setTipo(TipoUsuario::stringToTipoUsuario($userData['tipo']??$usuarioAntiguo->getTipo()->name));
+
+        /*TODO Buscar el usuario en la base de datos y luego modificarlo*/
+        return $usuarioAntiguo;
     }
 }

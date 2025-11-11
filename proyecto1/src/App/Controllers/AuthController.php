@@ -13,7 +13,7 @@ class AuthController
         require_once __DIR__ . '/../../vistas/public/loginForm.php';
     }
 
-    // Recibe y procesa los datos del formulario
+    // Recibe y procesa los datos del formulario en local.
     public function procesarLogin()
     {
         // Recibir los datos

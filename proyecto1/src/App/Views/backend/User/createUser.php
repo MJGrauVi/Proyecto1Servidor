@@ -36,16 +36,16 @@ include_once(DIRECTORIO_TEMPLATE_BACKEND."main.php");
 
         </div>
         <div class="mb-3">
-            <select class="form-select" name="type" id="inputType">
+            <select class="form-select" name="tipo" id="inputType">
                 <option selected>Selecciona el tipo de usuario</option>
-                <option value="Admin"
-                    <?php if(isset($resultado) && $_POST['type']=='Admin') {echo "selected";}?>
+                <option value="admin"
+                    <?php if(isset($resultado) && $_POST['tipo']=='admin') {echo "selected";}?>
                 >Administrador</option>
                 <option value="normal"
-                    <?php if(isset($resultado) && $_POST['type']=='normal') {echo "selected";}?>
+                    <?php if(isset($resultado) && $_POST['tipo']=='normal') {echo "selected";}?>
                 >Normal</option>
                 <option value="anuncios"
-                    <?php if(isset($resultado) && $_POST['type']=='anuncios') {echo "selected";}?>
+                    <?php if(isset($resultado) && $_POST['tipo']=='anuncios') {echo "selected";}?>
                 >Anuncios</option>
             </select>
         </div>

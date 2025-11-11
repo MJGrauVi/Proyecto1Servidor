@@ -1,12 +1,16 @@
-<?php
-$titulo="Backend Netflix";
-include_once(DIRECTORIO_TEMPLATE_BACKEND."head.php");
-include_once(DIRECTORIO_TEMPLATE_BACKEND."hamburger.php");
-include_once(DIRECTORIO_TEMPLATE_BACKEND."header.php");
-include_once(DIRECTORIO_TEMPLATE_BACKEND."aside.php");
-$tituloSeccion="Crear Usuario";
-include_once(DIRECTORIO_TEMPLATE_BACKEND."main.php");
 
+<?php
+$titulo = "Nueva publicación";
+include_once '../template/head.php';
+//include_once(__DIR__ . '/template/head.php');
+/*include_once "App/Views/frontend/template/header.php";*/
+//include_once(__DIR__ . '/template/header.php');
+include_once "App/Views/frontend/template/header.php";
+include_once "App/Views/frontend/template/aside.php";
+
+//include_once __DIR__ . '/template/aside.php';
+
+$tituloSeccion="Crear Usuario";
 
 ?>
     <form action="/user" method="post">
@@ -64,4 +68,5 @@ include_once(DIRECTORIO_TEMPLATE_BACKEND."main.php");
         <button type="submit" class="btn btn-primary">Crear Usuario</button>
     </form>
 <?php
-include_once(DIRECTORIO_TEMPLATE_BACKEND."footer.php");
+include_once "App/frontend/template/footer.php";
+?>

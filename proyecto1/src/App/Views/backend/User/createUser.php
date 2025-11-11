@@ -1,45 +1,46 @@
 
 <?php
-$titulo = "Nueva publicación";
-include_once '../template/head.php';
-//include_once(__DIR__ . '/template/head.php');
-/*include_once "App/Views/frontend/template/header.php";*/
-//include_once(__DIR__ . '/template/header.php');
-include_once "App/Views/frontend/template/header.php";
-include_once "App/Views/frontend/template/aside.php";
+$titulo = "Nuevo Usuario";
 
-//include_once __DIR__ . '/template/aside.php';
+include_once(__DIR__ . '/../template/head.php');
+
+include_once(__DIR__ . '/../template/header.php');
+
+include_once (__DIR__ .'/../template/aside.php');
 
 $tituloSeccion="Crear Usuario";
 
 ?>
+<div class="form-container">
+    <h2 class="page-title"><?= $titulo ?></h2>
+
     <form action="/user" method="post">
-        <div class="mb-3">
+        <div class="form-group">
             <label for="inputUsername" class="form-label">Nombre de usuario</label>
             <input type="text" class="form-control" id="inputUsername" name="username"
                 <?php if(isset($resultado)) {echo "value=".$_POST['username']; }?>
             >
 
         </div>
-        <div class="mb-3">
+        <div class="form-group">
             <label for="inputPassword" class="form-label">Contraseña</label>
             <input type="password" class="form-control" id="inputPassword" name="password"
                 <?php if(isset($resultado)) {echo "value=".$_POST['password']; }?>>
         </div>
-        <div class="mb-3">
+        <div class="form-group">
             <label for="inputEmail" class="form-label">Correo Electrónico</label>
             <input type="email" class="form-control" id="inputEmail" name="email"
                 <?php if(isset($resultado)) {echo "value=".$_POST['email']; }?>
             >
         </div>
-        <div class="mb-3">
+        <div class="form-group">
             <label for="inputEdad" class="form-label">Introduce tu edad</label>
             <input type="number" class="form-control" id="inputEdad" name="edad"
                 <?php if(isset($resultado)) {echo "value=".$_POST['edad']; }?>
             >
 
         </div>
-        <div class="mb-3">
+        <div class="form-group">
             <select class="form-select" name="tipo" id="inputType">
                 <option selected>Selecciona el tipo de usuario</option>
                 <option value="admin"
@@ -64,9 +65,10 @@ $tituloSeccion="Crear Usuario";
 
         <?php }
         ?>
-
-        <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        </div>
     </form>
 <?php
-include_once "App/frontend/template/footer.php";
+include_once (__DIR__ .'../../template/footer.php');
 ?>

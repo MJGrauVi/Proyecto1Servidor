@@ -63,6 +63,8 @@ class UserController implements ControllerInterface
                 //La validacion ha creado un usuario correcto y hay que guardarlo.
                 $resultado->setPassword(password_hash($resultado->getPassword(),PASSWORD_DEFAULT));
                 UserModel::saveUser($resultado);
+                $_SESSION['user']=$resultado;//Guardo los datos del usuario en la sesión.
+
             }
         }
 
@@ -112,6 +114,7 @@ class UserController implements ControllerInterface
         //Hay que encriptar el id del usuario.
         $usuario = UserModel::getUserByUsername($_POST["username"]);
         $_SESSION['user']=$usuario;
+
         if(password_verify($_POST["password"], $usuario->getPassword())){
             $_SESSION['user']=$usuario;
             if($usuario->isAdmin()){
@@ -119,7 +122,7 @@ class UserController implements ControllerInterface
                 header('Location:/user');
 
             }else{
-                var_dump($_POST);
+
                 include_once DIRECTORIO_VISTAS_BACKEND . "/User/vista_user_creado.php";
                 exit();
                 //$error = "El usuario o contraseña incorrecto";

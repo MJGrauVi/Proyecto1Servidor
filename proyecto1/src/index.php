@@ -54,6 +54,7 @@ $router->post('/user/registro', [UserController::class, 'registroVerify']); // p
 $router->get('/user/logout', [UserController::class, 'logout'],['before' =>'auth']); //Eliminar un ususario.
 $router->get('/user/create/', [UserController::class, 'create'],['before' =>'auth']);
 $router->put('/user', [UserController::class, 'destroy']);
+//$router->get('/user/{id}',[UserController::class, 'show(id)']);
 $router->get('/user/{id}/edit/', [UserController::class, 'edit'],["before" => 'auth']);//Añadimos filtro.
 //Rutas para la aplicacion web visual
 

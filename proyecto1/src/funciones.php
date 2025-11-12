@@ -47,8 +47,28 @@ function generatePassword(int $caracteres, int $condiciones = 3): string {
         4 => $numeros . $letrasMinus . $letrasMayus . $simbolos,
         default => $numeros . $letrasMinus . $letrasMayus,
     };
+    //return substr(str_shuffle(str_repeat($chars, (int)ceil($caracteres / strlen($chars)))), 0, $caracteres);
+    /*********/
+   /* $repeticiones = (int) ceil($caracteres / strlen($chars));
 
-    return substr(str_shuffle(str_repeat($chars, (int)ceil($caracteres / strlen($chars)))), 0, $caracteres);
+    // Repetimos y mezclamos los caracteres
+    $mezcla = str_shuffle(str_repeat($chars, $repeticiones));
+
+    // Tomamos los primeros $caracteres caracteres
+    $password = substr($mezcla, 0, $caracteres);
+
+    return $password;*/
+
+    /**************/
+    $password = '';
+    $maxIndex = strlen($chars) - 1;
+
+    for ($i = 0; $i < $caracteres; $i++) {
+        $password .= $chars[random_int(0, $maxIndex)];
+    }
+
+    return $password;
+
 }
 /*function organizarImagen(array $datosImagen,string $tituloPelicula):string|bool{
     $carpetas=scandir(__DIR__);

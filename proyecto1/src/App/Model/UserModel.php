@@ -49,7 +49,7 @@ class UserModel
         //prepare() Toma sentencia SQL, permite parametros, evita Inyeccion sql, devulve PDOStatement y luego llamas a execute().
         $sentenciaPreparada = $conexion->prepare($sql);
 
-        $sentenciaPreparada->execute();
+        $sentenciaPreparada->execute(); //Que delvuelve execute();*********
 
         $resultado = $sentenciaPreparada->fetchAll(PDO::FETCH_ASSOC);//Devuelve array asociativo.
 

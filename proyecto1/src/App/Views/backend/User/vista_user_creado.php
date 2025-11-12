@@ -12,7 +12,7 @@
 
     <div class="container mt-5">
         <div class="card shadow-sm">
-            <div class="card-header bg-success text-white">
+            <div class="card-header text-purple">
                 <h2 class="mb-0"> Usuario creado correctamente</h2>
             </div>
             <div class="card-body">

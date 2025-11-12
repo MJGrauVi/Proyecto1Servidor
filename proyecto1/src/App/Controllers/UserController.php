@@ -24,8 +24,11 @@ class UserController implements ControllerInterface
         include_once DIRECTORIO_VISTAS_BACKEND . "User/allusers.php";
 
     }else{
-            $error = "No tiene permisos para acceder a esta pagina";
-            include_once DIRECTORIO_VISTAS_BACKEND . "errorNoAdmin.php";
+            $_SESSION['mensaje'] = "Usuario creado correctamente.";
+            header("Location: /login");
+            exit;
+           // $error = "No tiene permisos para acceder a esta pagina";
+           // include_once DIRECTORIO_VISTAS_BACKEND . "vistas_user_creado.php";
         }
     }
      function show($id)
@@ -116,7 +119,11 @@ class UserController implements ControllerInterface
                 header('Location:/user');
 
             }else{
-                $error = "El usuario o contraseña incorrecto";
+                var_dump($_POST);
+                include_once DIRECTORIO_VISTAS_BACKEND . "/User/vista_user_creado.php";
+                exit();
+                //$error = "El usuario o contraseña incorrecto";
+                //header("Location: http://localhost:8080/");
 
             }
 

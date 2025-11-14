@@ -1,9 +1,9 @@
 <?php
 $titulo = "Registro Usuario";
 
-include_once(__DIR__ . '/template/head.php');
+include_once(DIRECTORIO_TEMPLATE_FRONTEND. 'head.php');
 include_once(__DIR__ . '/template/header.php');
-//nclude_once "template/aside.php";
+//include_once "template/aside.php";
 //include_once 'main.php';
 ?>
 

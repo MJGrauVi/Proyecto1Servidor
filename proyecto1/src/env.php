@@ -1,7 +1,7 @@
 <?php
 
 const DIRECTORIO_VISTAS_FRONTEND = "App/Views/frontend/";
-const DIRECTORIO_TEMPLATE_FRONTEND = "/App/Views/frontend/template/";
+const DIRECTORIO_TEMPLATE_FRONTEND = "App/Views/frontend/template/";
 const DIRECTORIO_CSS_FRONTEND = "/app/Views/frontend/template/css/";
 const DIRECTORIO_IMG_FRONTEND = "/App/Views/frontend/template/css/img/";
 const DIRECTORIO_JS_FRONTEND = "/App/Views/frontend/template/css/js/";

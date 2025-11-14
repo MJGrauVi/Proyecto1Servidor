@@ -103,35 +103,43 @@ class UserController implements ControllerInterface
         include_once DIRECTORIO_VISTAS_BACKEND . "User/editUser.php";
     }
 
-            function verify(){
+    function verify(){
         //Obtenemos los datos de la peticion post.
-     //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
+        //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         //Obtenemos los datos de la petición POST ***
 
          //Petición a la base de datos para recuperar la información del usuario.
         $usuario = UserModel::getUserByUsername($_POST["username"]);
+        if (!$usuario){
+            //No hay usuario en la base de datos o no lo encuentra
+            //Cargar vista de errores
+            include_once DIRECTORIO_VISTAS_FRONTEND . "registro.php";
+            //include_once __DIR__ . "/../Views/frontend/registro.php";
 
-        //Tengo un usuario válido.
-        $_SESSION['user']=$usuario;
 
-        if(password_verify($_POST["password"], $usuario->getPassword())){
-            $_SESSION['user']=$usuario;
-            if($usuario->isAdmin()){
-                //Tenemos a un usuario administrador
-                header('Location:/user');
+        } else{
+
+            if(password_verify($_POST["password"], $usuario->getPassword())){
+                $_SESSION['user']=$usuario;
+                if($usuario->isAdmin()){
+                    //Tenemos a un usuario administrador
+                    header('Location:/user');
+
+                }else{
+                    header('Location: /');
+                    //  include_once DIRECTORIO_VISTAS_BACKEND . "/User/vista_user_creado.php";
+                    // exit();
+                }
 
             }else{
-                header('Location: /');
-              //  include_once DIRECTORIO_VISTAS_BACKEND . "/User/vista_user_creado.php";
-               // exit();
+                $error="Usuario o contraseña incorrecto";
+                include_once DIRECTORIO_VISTAS_BACKEND ."/error404.php";
+                //No tengo un usuario valido
+
             }
-
-        }else{
-            $error="Usuario o contraseña incorrecto";
-            include_once DIRECTORIO_VISTAS_BACKEND ."/error404.php";
-            //No tengo un usuario valido
-
         }
+        //Tengo un usuario válido.
+
     }
     function logout()
     {
@@ -147,7 +155,7 @@ class UserController implements ControllerInterface
     function show_registro()
     {
        //cambiado a show. muestra el formulario de registro ok//
-        include_once "App/Views/frontend/registro.php";
+        include_once __DIR__ . "/../Views/frontend/registro.php";
 
 
     }

@@ -174,7 +174,7 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
         $usuarioAntiguo = UserModel::getUserById($userData['uuid']);
 
         $usuarioAntiguo->setUsername($userData['username']??$usuarioAntiguo->getUsername());
-        $usuarioAntiguo-setPassword(password_hash($userData['password'], PASSWORD_DEFAULT)??$usuarioAntiguo->getPassword());
+        $usuarioAntiguo->setPassword(password_hash($userData['password'], PASSWORD_DEFAULT)??$usuarioAntiguo->getPassword());
         $usuarioAntiguo->setEmail($userData['email']??$usuarioAntiguo->getEmail());
         $usuarioAntiguo->setEdad($userDate['edad']??$usuarioAntiguo->getEdad());
         $usuarioAntiguo->setTipo(TipoUsuario::stringToTipoUsuario($userData['tipo']??$usuarioAntiguo->getTipo()->name));

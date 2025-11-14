@@ -7,6 +7,8 @@
             strpos($titulo, 'DNI') !== false        => 'dni',
             strpos($titulo, 'Contraseña') !== false => 'password',
             strpos($titulo, 'publicacion') !== false=> 'publicacion',
+            strpos($titulo,'Iniciar sesion') !== false => 'iniciar_sesion',
+            strpos($titulo, 'Registrarse') !== false => 'registrarse',
             default                                 => 'info',
         };
 
@@ -14,8 +16,11 @@
             'dni'      => '🆔',
             'password' => '🔑',
             'publicacion'     => '🎴',
-            default    => 'ℹ️',
+            'iniciar_sesion' => '🎞️',
+            'registrarse' => '🧑',
+            default    => 'ℹ️'
         };
+
     ?>
 
         <section class="card <?= $class ?>"><!--tarjeta con clase dinámica.-->

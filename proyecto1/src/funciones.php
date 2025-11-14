@@ -35,6 +35,7 @@ function calcularLetraDNI(string $dni): string {
 } */
 
 function generatePassword(int $caracteres, int $condiciones = 3): string {
+
     $numeros = '0123456789';
     $letrasMinus = 'abcdefghijklmnopqrstuvwxyz';
     $letrasMayus = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -61,10 +62,11 @@ function generatePassword(int $caracteres, int $condiciones = 3): string {
 
     /**************/
     $password = '';
-    $maxIndex = strlen($chars) - 1;
+    $maxIndex = strlen($chars) - 1;//strlen devuelve el tamaño de la adena
 
     for ($i = 0; $i < $caracteres; $i++) {
         $password .= $chars[random_int(0, $maxIndex)];
+
     }
 
     return $password;
@@ -80,7 +82,7 @@ function generatePassword(int $caracteres, int $condiciones = 3): string {
     }
     return __DIR__."/uploaded/".$tituloPelicula."png";
 }*/
-function organizarImagen(array $datosImagen, string $tituloPelicula): string|bool {
+function organizarImagen(array $datosImagen, string $tituloPelicula): string|bool {//Movemos img a uploaded,añadimos nombre y devolvemos ruta donde está guardada.
     $rutaCarpeta = __DIR__ . "/uploaded";
 
     if (!is_dir($rutaCarpeta)) {
@@ -90,7 +92,7 @@ function organizarImagen(array $datosImagen, string $tituloPelicula): string|boo
     $rutaDestino = $rutaCarpeta . "/" . $tituloPelicula . ".png";
 
     if (move_uploaded_file($datosImagen['tmp_name'], $rutaDestino)) {
-        return $rutaDestino; // devuelve la ruta final
+        return $rutaDestino; // devuelve la ruta final "string".
     }
 
     return false; // si falla el movimiento

@@ -108,7 +108,7 @@
 <div class="c">
     <div class="_404">404</div>
     <hr>
-    <div class="_1"><?= htmlspecialchars($_SERVER['REQUEST_URI']) ?></div>
+    <div class="_1"><?= $error??"UHHHHHHHH" ?></div>
     <div class="_2">NO ENCONTRADA</div>
     <a class="btn" href="/">INICIO</a>
 </div>

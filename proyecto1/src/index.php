@@ -7,6 +7,7 @@ session_start();
 
 //Directiva para insertar o utilizar la clase RouteCollector
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
+use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\RouteCollector;
 use App\Controllers\UserController;
 use App\Model\UserModel;
@@ -15,7 +16,6 @@ use App\Class\User;
 
 //Instancia una variable de la clase RouteCollector.
 $router = new RouteCollector();
-
 
 //Definir los filtros de las rutas.
 
@@ -44,50 +44,80 @@ $router->get('/error', function (){
     include_once "views/backend/errorNoAdmin.php";
 });
 
-//Rutas asocialdas a la vista de usuario
-$router->get('/user', [UserController::class, 'index']);
-$router->post('/user', [UserController::class, 'store']);
+//Función de inicio. Si hay usuario logueado
+$router->get('/', function() {
+    if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user']->getUsername();
+    } else {
+        //return 'Hola invitado. <a href="/login">Inicia sesión</a>';
+        $user = null;
+    }
+    include_once 'vistas/public/inicio.php';
+});
+
+//Rutas de Usuario CRUD
+//Rutas asociadas a las vistas de usuario.
+$router->get('/user/{id}/edit/', [UserController::class, 'edit'],["before" => 'auth']);//Añadimos filtro.
+$router->get('/user/create/', [UserController::class, 'create'],['before' =>'auth']);
 $router->get('/login', [UserController::class, 'show_login']); //Muestra el formularioLogin
 $router->post('/user/login', [UserController::class, 'verify']); //ok procesa el formularioLogin
-$router->get('/registro', [UserController::class, 'show_registro']); // muestra el formularioRegistro
-$router->post('/user/registro', [UserController::class, 'registroVerify']); // procesa el formularioRegistro
 $router->get('/user/logout', [UserController::class, 'logout'],['before' =>'auth']); //Eliminar un ususario.
-$router->get('/user/create/', [UserController::class, 'create'],['before' =>'auth']);
-$router->put('/user', [UserController::class, 'destroy']);
-//$router->get('/user/{id}',[UserController::class, 'show(id)']);
-$router->get('/user/{id}/edit/', [UserController::class, 'edit'],["before" => 'auth']);//Añadimos filtro.
+
 //Rutas para la aplicacion web visual
+$router->get('/user', [UserController::class, 'index']);
+$router->get('/user/{id}', [UserController::class, 'show']); // muestra el formularioRegistro
+$router->post('/user', [UserController::class, 'store']);
+$router->put('/user/{id}',[UserController::class,'update']);
+$router->delete('/user/{id}', [UserController::class, 'destroy'],["before"=>'admin']);
+
+//Rutas de Servicio API REST  ****ver *******
+$router->get('/api/user',[UserController::class,'index']);
+$router->get('/api/user/{id}',[UserController::class,'show']);
+$router->post('/api/user',[UserController::class,'store']);
+$router->put('/api/user/{id}',[UserController::class,'update']);
+$router->delete('/api/user/{id}',[UserController::class,'destroy']);
 
 //publicacion
-
+/*
 $router->get('/publicacion', function () {
     $titulo = "Crear Publicacion";
-    $contenido = "Creando.....";
     include_once "App/Views/frontend/add-publicacion.php";
 });
+
 $router->get('/user/publicacion', function () {
     return "Procesando publicacion";
 });
+// Procesar datos enviados del formulario (POST)
+$router->post('/publicacion', function () {
+    // Depurar datos recibidos
+    var_dump($_POST);
+    var_dump($_FILES);
 
-//Rutas de Servicio  API REST
-$router->get('/api/user', [UserController::class, 'index']);
-$router->get('/api/user/create/', [UserController::class, 'create']);
-$router->get('/api/user/{id}/edit/', [UserController::class, 'edit']);
-$router->post('/api/user', [UserController::class, 'store']);
-$router->put('/api/user', [UserController::class, 'destroy']);
+    // Crear carpeta uploader si no existe
+    $uploadDir = __DIR__ . "/uploader";
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
 
+    // Aquí iría tu lógica de guardar archivos, base de datos, etc.
+});
+*/
 
 //Define las rutas a la que va a responder mi aplicación web.
 // WEB PÚBLICA
+
+/*
 $router->get('/', function () {
-    $titulo = "Inicio";
+   $titulo = "Inicio";
     $contenido = "Bienvenido a la web pública";
     include "vistas/public/template/head.php";
     include "vistas/public/template/header.php";
     include "vistas/public/template/aside.php";
     include "vistas/public/main.php";
     include "vistas/public/template/footer.php";
+    include_once "vistas/public/inicio.php";
 });
+*/
 $router->get('/dni', function () {
     $numero = $_GET['numero'] ?? '';
     $resultado = $numero ? calcularLetraDNI($numero) : "Debes pasar ?numero=...";
@@ -117,21 +147,44 @@ $router->get('/administrador', function () {
     include "vistas/admin/template/footer.php";
 });
 
-//Rutas de trabajo con publicacion
-$router->post('/publicacion', function () {
-    var_dump($_POST);
-    var_dump($_FILES);
 
-    mkdir(__DIR__ . "uploader");
-});
-$router->delete('/publicacion/{id}', function ($id) {
-    //ruta para el borrado de una publicación.
-});
+
 
 // Dispatcher
-use Phroute\Phroute\Dispatcher;
+/*use Phroute\Phroute\Dispatcher;
 
 $dispatcher = new Dispatcher($router->getData());
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
-echo $dispatcher->dispatch($method, $uri);
+echo $dispatcher->dispatch($method, $uri);*/
+
+//Resolver la ruta que debemos cargar
+/*$dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
+
+try{
+    $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+}catch (HttpRouteNotFoundException $e){
+    return include_once DIRECTORIO_VISTAS_BACKEND."error404.php";
+}
+
+// Print out the value returned from the dispatched function
+echo $response;*/
+
+/*********************************************************/
+// Creamos el Dispatcher con todas las rutas registradas
+$dispatcher = new Dispatcher($router->getData());
+
+//Obtenemos métodos HTTP y URI, con valores por defecto por si no están definidos.
+$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+$uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);//Parse_url devuelve solo la parte de la ruta
+//sin la query string /login?redirect=dashboard solo deboveria /login y tampoco el domnio.
+try {
+    // Intentamos despachar la ruta correspondiente
+    // dispatch() ejecuta la función asociada a la ruta y devuelve su resultado
+    echo $dispatcher->dispatch($method, $uri);
+
+} catch (HttpRouteNotFoundException $e) {
+    // Si la ruta no existe, mostramos la página de error 404
+    include_once DIRECTORIO_VISTAS_BACKEND . "error404.php";
+}

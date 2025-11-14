@@ -4,10 +4,10 @@
             <ul>
                 <li><a href="/">ℹ️ Inicio</a></li>
                 <li><a href="/dni?numero=12345678">🆔 Calcular DNI</a></li>
-                <li><a href="/password?length=12">🔑 Generar Contraseña</a></li>
+                <li><a href="/password?length=8">🔑 Generar Contraseña</a></li>
                 <li><a href="/publicacion"> 🎴 Añadir Post</a></li>
-                <li><a href="/add-Pelicula"> 🎞️ Añadir Pelicula</a></li>
-                <li><a href="/administrador"> 🧑‍💼 Administración</a></li>
+                <li><a href="/login"> 🎞️ Iniciar sesión</a></li>
+                <li><a href="/registro"> 🧑‍💼 Registrarse</a></li>
 
             </ul>
         </nav>

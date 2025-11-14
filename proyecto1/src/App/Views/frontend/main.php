@@ -6,15 +6,19 @@
         $class = match (true) { //Asigno clase según el título.
             strpos($titulo, 'DNI') !== false        => 'dni',
             strpos($titulo, 'Contraseña') !== false => 'password',
-            strpos($titulo, 'Añadir publicacion') !== false => 'publicacion',
+            strpos($titulo, 'publicacion') !== false=> 'publicacion',
+            strpos($titulo,'Iniciar sesion') !== false => 'iniciar_sesion',
+            strpos($titulo, 'Registrarse') !== false => 'registrarse',
             default                                 => 'info',
         };
 
         $icon = match ($class) { //Según la clase asignada asocio el icono.
             'dni'      => '🆔',
             'password' => '🔑',
-            'publicacion'=> '🎴',
-            default    => 'ℹ️',
+            'publicacion'     => '🎴',
+            'iniciar_sesion' => '🎞️',
+            'registrarse' => '🧑',
+            default    => 'ℹ️'
         };
     ?>
 

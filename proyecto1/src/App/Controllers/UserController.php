@@ -31,39 +31,35 @@ class UserController implements ControllerInterface
            // include_once DIRECTORIO_VISTAS_BACKEND . "vistas_user_creado.php";
         }
     }
-     function show($id)
-     {
-         $usuario = UserModel::getUserById($id);
-         include_once DIRECTORIO_VISTAS_BACKEND . "User/mostrarUser.php";
-     }
 
-    /*    function show($id)
-        {
+
+        function show($id){
             if (isset($_SESSION['user'])){
-                $usuario=UserModel::getUserById($_SESSION['user']->getUuid());
-                if ($_SESSION['user']->isAdmin()) {
-                    return include_once DIRECTORIO_VISTAS_BACKEND . "User/mostrarUser.php";
-                }else{
-                    return include_once DIRECTORIO_VISTAS_FRONTEND. "mostrarUser.php";
-                }
-            }else{
-                return "Ruta no disponible para tu usuario";
+
+                //tenemos un usuario logueado en el sistema
+                $usuario=UserModel::getUserById($id);
+
+                    //Si es administrador incluimos esta vista.
+                    include_once DIRECTORIO_VISTAS_BACKEND . "User/mostrarUser.php";
+
             }
-        }*/
+        }
 
 
         function store()
         {
-            $resultado= User::validateUserCreation($_POST);
+            $resultado= User::validateUserCreation($_POST);//se pasan los datos del formulario y llama a validar.
 
             if(is_array($resultado)){
                 //Tenemos datos con errores.
-                include_once DIRECTORIO_VISTAS_BACKEND."/User/createUser.php";
+                //include_once DIRECTORIO_VISTAS_BACKEND." User/createUser.php";
+               include_once DIRECTORIO_VISTAS_BACKEND . "User/registro.php";
             }else{
                 //La validacion ha creado un usuario correcto y hay que guardarlo.
                 $resultado->setPassword(password_hash($resultado->getPassword(),PASSWORD_DEFAULT));
                 UserModel::saveUser($resultado);
-                $_SESSION['user']=$resultado;//Guardo los datos del usuario en la sesión.
+                header('Location: /user');
+           //     $_SESSION['user']=$resultado;//Guardo los datos del usuario en la sesión.
 
             }
         }
@@ -74,7 +70,7 @@ class UserController implements ControllerInterface
                 //Leo del fichero input los datos que me llegan de la peticion PUT.
                 $editData=json_decode(file_get_contents("php://input"), true);
 
-                var_dump($editData);
+               // var_dump($editData);
 
                 //Añado el uuid a los datos que me han llegado en la peticion PUT.
                 $editData['uuid'] = $id;
@@ -83,9 +79,9 @@ class UserController implements ControllerInterface
                 $usuario = User::validateUserEdit($editData);
 
                 //TODO Guardo en usuario actualizado en la BBDD.
-
+                UserModel::updateUser($usuario);
                 //Muestro los datos del usuario o los errores en la petición si los hay
-                var_dump($usuario);
+                //var_dump($usuario);
         }
     function destroy($id)
     {
@@ -102,6 +98,7 @@ class UserController implements ControllerInterface
 
         // Recuperar los datos de un usuario del Model
         $usuario = UserModel::getUserById($id);
+
         //Llamar a la vista que se muestre los datos del usuario
         include_once DIRECTORIO_VISTAS_BACKEND . "User/editUser.php";
     }
@@ -111,8 +108,10 @@ class UserController implements ControllerInterface
      //Este método requiere que antes haya hecho session_start() sino lanza warning o no guarda la sesion.
         //Obtenemos los datos de la petición POST ***
 
-        //Hay que encriptar el id del usuario.
+         //Petición a la base de datos para recuperar la información del usuario.
         $usuario = UserModel::getUserByUsername($_POST["username"]);
+
+        //Tengo un usuario válido.
         $_SESSION['user']=$usuario;
 
         if(password_verify($_POST["password"], $usuario->getPassword())){
@@ -122,19 +121,22 @@ class UserController implements ControllerInterface
                 header('Location:/user');
 
             }else{
-
-                include_once DIRECTORIO_VISTAS_BACKEND . "/User/vista_user_creado.php";
-                exit();
-                //$error = "El usuario o contraseña incorrecto";
-                //header("Location: http://localhost:8080/");
-
+                header('Location: /');
+              //  include_once DIRECTORIO_VISTAS_BACKEND . "/User/vista_user_creado.php";
+               // exit();
             }
+
+        }else{
+            $error="Usuario o contraseña incorrecto";
+            include_once DIRECTORIO_VISTAS_BACKEND ."/error404.php";
+            //No tengo un usuario valido
 
         }
     }
     function logout()
     {
         session_destroy();
+        return header('Location: /');
     }
     function show_login()
     {
@@ -144,69 +146,12 @@ class UserController implements ControllerInterface
     }
     function show_registro()
     {
-       //ok muestra el formulario de registro ok//
+       //cambiado a show. muestra el formulario de registro ok//
         include_once "App/Views/frontend/registro.php";
 
 
     }
 
-   /*  function registro()
-    {
-        // 1️⃣ Iniciar sesión si no está iniciada (por si se usa más adelante)
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        // 2️⃣ Recoger los datos del formulario (por seguridad, con filtrado básico)
-        $datos = filter_input_array(INPUT_POST, [
-            'username' => FILTER_SANITIZE_STRING,
-            'email' => FILTER_SANITIZE_EMAIL,
-            'password' => FILTER_DEFAULT,
-            'confirm_password' => FILTER_DEFAULT
-        ]);
-
-        // Evitar error si 'password' no está definido
-        $password = $datos['password'] ?? '';
-
-        // 3️⃣ Definir las reglas de validación
-        $validator = v::key('username', v::alnum()->noWhitespace()->length(3, 20))
-            ->key('email', v::email())
-            ->key('password', v::length(6, 20))
-            ->key('confirm_password', v::equals($password));
-
-        try {
-            // 4️⃣ Ejecutar la validación
-            $validator->assert($datos);
-
-            // 5️⃣ Si todo es válido, crear el usuario (modelo)
-            $usuario = User::validateUserCreation($datos);
-
-            // 6️⃣ (Opcional) Guardar el usuario en la base de datos
-            // UserModel::insertUser($usuario);
-
-            // 7️⃣ Mostrar respuesta o redirigir a login/éxito
-            header('Content-Type: application/json');
-            echo json_encode([
-                'status' => 'ok',
-                'message' => 'Usuario registrado correctamente',
-                'usuario' => $usuario
-            ]);
-        } catch (NestedValidationException $e) {
-            // 8️⃣ Mostrar los errores de validación de forma legible
-            header('Content-Type: application/json');
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Error en el formulario',
-                'errores' => $e->getMessages()
-            ]);
-        } catch (Exception $e) {
-            // 9️⃣ Capturar cualquier otro error (por ejemplo, al guardar en BBDD)
-            header('Content-Type: application/json');
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Error interno: ' . $e->getMessage()
-            ]);
-        }
-    } */
 
     function registro() {
     $datos = $_POST;

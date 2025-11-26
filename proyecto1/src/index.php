@@ -87,21 +87,39 @@ $router->get('/publicacion', function () {
 $router->get('/user/publicacion', function () {
     return "Procesando publicacion";
 });
+*/
+$router->get('/post', function (){ //muestra el formulario para crear un pot.
+    $titulo = "Añadir publicación";
+    //include_once DIRECTORIO_VISTAS_BACKEND . "/add-publicacion.php";
+    //include_once DIRECTORIO_VISTAS_BACKEND . "/publicacion.php";
+    //include_once DIRECTORIO_VISTAS_BACKEND . "/main.php";
+
+});
+
+
+ //Muestra el formularioPublicacion
 // Procesar datos enviados del formulario (POST)
 $router->post('/publicacion', function () {
     // Depurar datos recibidos
     var_dump($_POST);
     var_dump($_FILES);
-
-    // Crear carpeta uploader si no existe
-    $uploadDir = __DIR__ . "/uploader";
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
+    $imgPost = scandir(__DIR__);
+    VAR_DUMP($imgPost);
+    if (!array_search('/uploaded', $imgPost)) {
+        mkdir(__DIR__ . '/uploaded');
+        move_uploaded_file($_FILES['imgPrincipal']['tmp_name'], __dir__ . '/uploaded/' . $_FILES['imgPrincipal']['name']);
+    } else {
+        move_uploaded_file($_FILES['imgPrincipal']['tmp_name'], __DIR__ . '/uploaded/' . $_FILES['imgPrincipal']['name']);
     }
 
+    // Crear carpeta uploader si no existe
+   // $uploadDir = __DIR__ . "/uploader";
+   // if (!is_dir($uploadDir)) {
+    //    mkdir($uploadDir, 0777, true);
+  //  }
     // Aquí iría tu lógica de guardar archivos, base de datos, etc.
 });
-*/
+
 
 //Define las rutas a la que va a responder mi aplicación web.
 // WEB PÚBLICA

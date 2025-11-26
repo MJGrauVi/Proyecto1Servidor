@@ -1,0 +1,324 @@
+:root {
+  --bg: #f6f8fa;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #7c3aed; /* morado */
+  --accent-2: #06b6d4; /* cyan */
+  --acent-3: #ed3a91ff;
+  --acent-4: #1ca31a;
+  --sidebar-bg: rgba(255, 255, 255, 0.6);
+  --glass: rgba(255, 255, 255, 0.6);
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(16, 24, 40, 0.08);
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #f3f6fb 0%, var(--bg) 100%);
+  color: #111827;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: transparent;
+  gap: 1rem;
+}
+
+.brand .logo {
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1.75rem;
+  padding-left: 2rem;
+}
+
+.nav-toggle {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  font-size: 1.1rem;
+  display: none;
+  cursor: pointer;
+}
+
+/* Layout */
+.layout {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1280px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+  align-items: stretch;
+  flex: 1 0 auto;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 360px;
+  background: var(--sidebar-bg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin: 0.6rem 0;
+}
+
+.sidebar a {
+  white-space: nowrap;
+  display: block;
+  text-decoration: none;
+  color: #0f172a;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.18s, color 0.18s, transform 0.18s;
+}
+.sidebar a {
+  white-space: nowrap;
+}
+.sidebar a:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(124, 58, 237, 0.12),
+    rgba(6, 182, 212, 0.06)
+  );
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* Main */
+main {
+  flex: 1;
+  width: auto;
+  background: var(--sidebar-bg);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+}
+
+main h2 {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+/* Cards */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--glass);
+  padding: 2.25rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-top: 1.25rem;
+  font-size: 1.05rem;
+  backdrop-filter: blur(8px);
+}
+
+.card .icon {
+  font-size: 3rem;
+}
+
+/* Variantes */
+.card.dni {
+  border-left: 5px solid var(--accent-2);
+}
+
+.card.password {
+  border-left: 5px solid var(--accent);
+}
+.card.publicacion {
+  border-left: 5px solid var(--accent-3);
+}
+
+.card:not(.dni):not(.password):not(.publicacion) {
+  border-left: 5px solid #f59e0b;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+/* login */
+
+/*body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f4f4f4; }*/
+.form-container {
+  width: 500px;
+  margin: auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.edad-tipoUsuario {
+  display: flex !important;
+
+  justify-content: center;
+  gap: 3rem;
+  align-items: flex-start;
+  /*flex-wrap: wrap; para que se adapte en pantallas pequeñas  */
+}
+.form-select {
+  align-items: center;
+  justify-content: center;
+  border: #dbd5d5 solid 1px;
+  font-size: medium;
+  border-radius: 3px;
+}
+
+.form-group button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.form-group button:hover {
+  background-color: #9c6ceeff;
+}
+.form-group .submit {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.form-group .submit:hover {
+  background-color: #9c6ceeff;
+}
+.form-tipo {
+  margin-bottom: 15px;
+  display: flex;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.form-control-fecha {
+  width: min-content;
+  padding: 10px;
+}
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px; /* oculto fuera de la vista */
+    height: 100vh;
+    width: 240px;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    left: 0px; /* aparece al hacer clic en la hamburguesa */
+  }
+
+  .nav-toggle {
+    display: block;
+    z-index: 1100; /* siempre encima */
+  }
+  main h2 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  /* Header */
+  .brand .logo {
+    font-size: 1.75rem;
+    padding-left: 2rem;
+  }
+  .site-header {
+    margin-top: 2rem;
+  }
+  /* form.php*/
+.form-wrapper {
+  max-width: 600px;   /* ✨ Ajusta aquí el tamaño */
+  margin: 0 auto;     /* Centra el formulario */
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+  textarea {
+    width: 100%;
+  }
+/* fin form.php*/
+}

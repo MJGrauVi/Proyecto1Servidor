@@ -4,11 +4,11 @@ include_once(__DIR__ . '/template/head.php');
 /*include_once "App/Views/frontend/template/header.php";*/
 include_once(__DIR__ . '/template/header.php');
 include_once __DIR__ . '/template/aside.php';
-include_once __DIR__ . '/main.php';
+include_once 'main.php';
 ?>
 
 
-    <!--<div class="form-container>
+   <!-- <div class="form-container>
     <h2 class=" page-title"><?php /*= $titulo */?></h2>
     <form action="/user/publicacion" method="post" enctype="multipart/form-data" class="p-4 rounded shadow bg-light" style="max-width: 600px; margin: auto;">
         <h2 class="mb-4 text-center text-primary">Nueva Publicación</h2>
@@ -57,8 +57,8 @@ include_once __DIR__ . '/main.php';
         </div>
     </form>
     </div>
-
 -->
+
 
 
 

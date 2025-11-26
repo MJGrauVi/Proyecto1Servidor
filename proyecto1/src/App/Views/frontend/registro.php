@@ -7,8 +7,6 @@ include_once(__DIR__ . '/template/header.php');
 //include_once 'main.php';
 ?>
 
-
-
 <div class="form-container">
     <h2 class="page-title"><?= $titulo ?></h2>
 

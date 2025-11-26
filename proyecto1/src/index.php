@@ -58,14 +58,14 @@ $router->get('/', function() {
 //Rutas de Usuario CRUD
 //Rutas asociadas a las vistas de usuario.
 $router->get('/user/{id}/edit/', [UserController::class, 'edit'],["before" => 'auth']);//Añadimos filtro.
-$router->get('/user/create/', [UserController::class, 'create'],['before' =>'auth']);
+$router->get('/user/create/', [UserController::class, 'create']);
 $router->get('/login', [UserController::class, 'show_login']); //Muestra el formularioLogin
 $router->post('/user/login', [UserController::class, 'verify']); //ok procesa el formularioLogin
 $router->get('/user/logout', [UserController::class, 'logout'],['before' =>'auth']); //Eliminar un ususario.
 
 //Rutas para la aplicacion web visual
-$router->get('/user', [UserController::class, 'index']);
-$router->get('/user/{id}', [UserController::class, 'show']); // muestra el formularioRegistro
+$router->get('/user', [UserController::class, 'index'],["before"=>'admin']);
+$router->get('/user/{id}', [UserController::class, 'show'],["before"=>'auth']); // muestra el formularioRegistro
 $router->post('/user', [UserController::class, 'store']);
 $router->put('/user/{id}',[UserController::class,'update']);
 $router->delete('/user/{id}', [UserController::class, 'destroy'],["before"=>'admin']);
@@ -77,8 +77,18 @@ $router->post('/api/user',[UserController::class,'store']);
 $router->put('/api/user/{id}',[UserController::class,'update']);
 $router->delete('/api/user/{id}',[UserController::class,'destroy']);
 
-//publicacion
-/*
+//Rutas de Publicaciones CRUD
+/*Rutas de servicio API REST
+
+$router->get('/publicacion',[PublicacionController::class,'index']);
+$router->get('/publicacion/{id}',[PublicacionController::class,'show']);
+$router->post('/publicacion',[PublicacionController::class,'store']);
+$router->put('/publicacion/{id}',[PublicacionController::class,'update']);
+$router->delete('/publicacion/{id}',[PublicacionController::class,'destroy']);
+
+//Rutas asociadas a las vistas de usuario
+$router->get('/create-movie',[MovieController::class,'create']);
+$router->get('/movie/{id}/edit',[MovieController::class,'edit']);
 $router->get('/publicacion', function () {
     $titulo = "Crear Publicacion";
     include_once "App/Views/frontend/add-publicacion.php";

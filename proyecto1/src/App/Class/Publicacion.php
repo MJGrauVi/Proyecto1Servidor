@@ -9,14 +9,12 @@ class Publicacion implements \JsonSerializable {
     private string $titulo;
     private string $contenido;
     private ?string $imagenPath;//? Puede recibir nulos.
-    private string $fechaPubli;
     private TipoPublicacion $tipoPubli;
 
     public function __construct(string $titulo, string $contenido, string $imagenPath, string $fechaPubli, TipoPublicacion $tipoPubli = TipoPublicacion::PENDIENTE){
         $this->titulo = $titulo;
         $this->contenido = $contenido;
         $this->imagenPath = $imagenPath;
-        $this->fecha = $fechaPubli;
         $this->TipoPublicacion = $tipoPubli;
 
     }
@@ -29,17 +27,6 @@ class Publicacion implements \JsonSerializable {
     public function setTipoPublicacion(TipoPublicacion $TipoPublicacion): Publicacion
     {
         $this->TipoPublicacion = $TipoPublicacion;
-        return $this;
-    }
-
-    public function getFecha(): string
-    {
-        return $this->fecha;
-    }
-
-    public function setFecha(string $fecha): Publicacion
-    {
-        $this->fecha = $fecha;
         return $this;
     }
 

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Interface\ControllerInterface;
 
-class MovieController implements ControllerInterface
+class PublicacionController implements ControllerInterface
 {
 
     function index()
@@ -22,12 +22,12 @@ class MovieController implements ControllerInterface
         // TODO: Implement store() method.
     }
 
-    function update()
+    function update($id)
     {
         // TODO: Implement update() method.
     }
 
-    function destroy()
+    function destroy($id)
     {
         // TODO: Implement destroy() method.
     }
@@ -39,6 +39,6 @@ class MovieController implements ControllerInterface
 
     function edit($id)
     {
-        // TODO: Implement edit() method.
+        include_once DIRECTORIO_VISTAS_BACKEND . "add-publicacion.php";
     }
 }

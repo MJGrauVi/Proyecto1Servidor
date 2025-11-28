@@ -14,17 +14,16 @@ $tituloSeccion="Crear Publi";
         <input type="text" class="form-control" name="titulo" id="FormControlInputTitulo" placeholder="Introduce el título">
     </div>
 
-    <div class="form-group mb-3">
+<!--    <div class="form-group mb-3">
         <label for="FormControlInputFecha" class="form-label">Fecha</label>
         <input type="date" class="form-control" name="fecha_estreno" id="FormControlInputFecha">
-    </div>
+    </div>-->
 
     <div class="form-group mb-3">
         <label for="FormControlSelectTipo" class="form-label">Tipo publicación</label>
         <select class="form-select" name="genero" id="FormControlSelectTipo" aria-label="Default select">
             <option selected value="accion">Reflexión con imagen</option>
             <option value="drama">Carta abierta</option>
-            <option value="comedia">Frase del día</option>
             <option value="slasher">Historia personal</option>
         </select>
     </div>

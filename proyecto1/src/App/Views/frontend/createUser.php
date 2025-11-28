@@ -2,9 +2,9 @@
 <?php
 $titulo = "Nuevo Usuario";
 
-include_once DIRECTORIO_VISTAS_BACKEND . 'template/backend.head.php';
-include_once DIRECTORIO_VISTAS_BACKEND . 'template/backend.header.php';
-include_once  DIRECTORIO_VISTAS_BACKEND .'template/backend.aside.php';
+include_once DIRECTORIO_VISTAS_FRONTEND . 'template/frontend.head.php';
+include_once DIRECTORIO_VISTAS_FRONTEND . 'template/frontend.header.php';
+include_once DIRECTORIO_VISTAS_FRONTEND .'template/frontend.aside.php';
 $tituloSeccion="Crear Usuario";
 
 ?>
@@ -39,7 +39,7 @@ $tituloSeccion="Crear Usuario";
         </div>
         <div class="form-group">
             <select class="form-select" name="tipo" id="inputType">
-                <option selected>Selecciona el tipo de usuario</option>
+                <option value="">Selecciona el tipo de usuario</option>
                 <option value="admin"
                     <?php if(isset($resultado) && $_POST['tipo']=='admin') {echo "selected";}?>
                 >Administrador</option>
@@ -67,5 +67,5 @@ $tituloSeccion="Crear Usuario";
         </div>
     </form>
 <?php
-include_once DIRECTORIO_VISTAS_BACKEND .'template/.backend.footer.php';
+include_once DIRECTORIO_VISTAS_FRONTEND .'template/frontend.footer.php';
 ?>

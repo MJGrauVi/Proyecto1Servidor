@@ -9,30 +9,6 @@ function calcularLetraDNI(string $dni): string {
     return $letras[$pos];
 }
 
-// Función para generar contraseña
-/* function generatePassword(int $caracteres, int $condiciones = 3): string {
-    $numeros = '0123456789';
-    $letrasMinus = 'abcdefghijklmnopqrstuvwxyz';
-    $letrasMayus = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $simbolos = '!@#$%^&*()_+-=[]{}<>?';
-
-    switch ($condiciones) {
-        case 1: $chars = $numeros; break;
-        case 2: $chars = $letrasMinus . $letrasMayus; break;
-        case 3: $chars = $numeros . $letrasMinus . $letrasMayus; break;
-        case 4: $chars = $numeros . $letrasMinus . $letrasMayus . $simbolos; break;
-        default: $chars = $numeros . $letrasMinus . $letrasMayus; break;
-    }
-
-    // Primera letra siempre mayúscula
-    $password = $letrasMayus[random_int(0, strlen($letrasMayus)-1)];
-    $max = strlen($chars)-1;
-    for ($i=1;$i<$caracteres;$i++){
-        $password .= $chars[random_int(0,$max)];
-    }
-
-    return $password;
-} */
 
 function generatePassword(int $caracteres, int $condiciones = 3): string {
 
@@ -48,19 +24,7 @@ function generatePassword(int $caracteres, int $condiciones = 3): string {
         4 => $numeros . $letrasMinus . $letrasMayus . $simbolos,
         default => $numeros . $letrasMinus . $letrasMayus,
     };
-    //return substr(str_shuffle(str_repeat($chars, (int)ceil($caracteres / strlen($chars)))), 0, $caracteres);
-    /*********/
-   /* $repeticiones = (int) ceil($caracteres / strlen($chars));
 
-    // Repetimos y mezclamos los caracteres
-    $mezcla = str_shuffle(str_repeat($chars, $repeticiones));
-
-    // Tomamos los primeros $caracteres caracteres
-    $password = substr($mezcla, 0, $caracteres);
-
-    return $password;*/
-
-    /**************/
     $password = '';
     $maxIndex = strlen($chars) - 1;//strlen devuelve el tamaño de la adena
 
@@ -72,7 +36,7 @@ function generatePassword(int $caracteres, int $condiciones = 3): string {
     return $password;
 
 }
-/*function organizarImagen(array $datosImagen,string $tituloPelicula):string|bool{
+function organizarImagen(array $datosImagen,string $tituloPelicula):string|bool{
     $carpetas=scandir(__DIR__);
     if (!array_search('uploaded',$carpetas)){
         mkdir(__DIR__."/uploaded");
@@ -81,8 +45,8 @@ function generatePassword(int $caracteres, int $condiciones = 3): string {
         move_uploaded_file($_FILES['poster']['tmp_name'],__DIR__."/uploaded/".$tituloPelicula."png");
     }
     return __DIR__."/uploaded/".$tituloPelicula."png";
-}*/
-function organizarImagen(array $datosImagen, string $tituloPelicula): string|bool {//Movemos img a uploaded,añadimos nombre y devolvemos ruta donde está guardada.
+}
+/*function organizarImagen(array $datosImagen, string $tituloPelicula): string|bool {//Movemos img a uploaded,añadimos nombre y devolvemos ruta donde está guardada.
     $rutaCarpeta = __DIR__ . "/uploaded";
 
     if (!is_dir($rutaCarpeta)) {
@@ -96,5 +60,5 @@ function organizarImagen(array $datosImagen, string $tituloPelicula): string|boo
     }
 
     return false; // si falla el movimiento
-}
+}*/
 

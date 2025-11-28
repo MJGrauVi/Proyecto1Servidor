@@ -1,5 +1,6 @@
 <?php
 
+const DIRECTORIO_VISTAS_PUBLIC = 'App/vistas/public/';
 const DIRECTORIO_VISTAS_FRONTEND = "App/Views/frontend/";
 const DIRECTORIO_TEMPLATE_FRONTEND = "/App/Views/frontend/template/";
 const DIRECTORIO_CSS_FRONTEND = "/app/Views/frontend/template/css/";
@@ -19,3 +20,4 @@ const DIRECTORIO_JS_BACKEND = "/App/Views/backend/template/js/";
 const URI_SERVIDOR = "mysql:host=mariadb;dbname=proyecto";
 const DATABASE_USERNAME = "mariajose";
 const DATABASE_PASSWORD = "gra200371";
+

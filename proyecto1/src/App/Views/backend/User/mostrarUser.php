@@ -1,15 +1,15 @@
 <?php
 $titulo = "Datos Usuario";
 
-include_once(__DIR__ . '/../template/head.php');
-
-include_once(__DIR__ . '/../template/header.php');
-
-include_once (__DIR__ .'/../template/aside.php');
+include_once DIRECTORIO_VISTAS_BACKEND . 'template/backend.head.php';
+include_once DIRECTORIO_VISTAS_BACKEND . 'template/backend.header.php';
+include_once DIRECTORIO_VISTAS_BACKEND .'template/backend.aside.php';
 
 ?>
+
     <div class="container">
       <div class="mb-3">
+
         <ul class="list-group">
           <li class="list-group-item active" aria-current="true">
             <?=$usuario->getUsername()?>
@@ -103,4 +103,5 @@ include_once (__DIR__ .'/../template/aside.php');
           window.location.replace("http://localhost:8080/user");
         }
       </script>
-        include_once (__DIR__ .'/../template/aside.php');
+        <?php
+include_once DIRECTORIO_VISTAS_BACKEND .'template/backend.footer.php';

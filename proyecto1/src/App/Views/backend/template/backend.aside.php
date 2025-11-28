@@ -5,9 +5,9 @@
                 <li><a href="/">ℹ️ Inicio</a></li>
                 <li><a href="/dni?numero=12345678">🆔 Calcular DNI</a></li>
                 <li><a href="/password?length=8">🔑 Generar Contraseña</a></li>
-                <li><a href="/publicacion"> 🎴 Añadir Post</a></li>
-                <li><a href="/login"> 🎞️ Iniciar sesión</a></li>
-                <li><a href="/registro"> 🧑‍💼 Registrarse</a></li>
+                <li><a href="/publi"> 🎴 Añadir Post</a></li>
+                <li><a href="/login"> 🎞️ Inicia sesión</a></li>
+                <li><a href="/administrador"> 🧑‍💼 Administración</a></li>
 
             </ul>
         </nav>

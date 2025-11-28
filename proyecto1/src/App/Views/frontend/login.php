@@ -1,8 +1,8 @@
 <?php
 $titulo = "Iniciar sesión";
 
-include_once(__DIR__ . '/template/head.php');
-include_once(__DIR__ . '/template/header.php');
+include_once(__DIR__ . '/template/frontend.head.php');
+include_once(__DIR__ . '/template/frontend.header.php');
 //nclude_once "template/aside.php";
 //include_once 'main.php';
 ?>
@@ -36,5 +36,5 @@ if (isset($_GET['error'])) {
 ?>
 
 <?php
-include_once(__DIR__ . '/template/footer.php');
+include_once __DIR__ . '/template/frontend.footer.php';
 ?>

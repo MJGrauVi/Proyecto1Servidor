@@ -3,15 +3,16 @@
 namespace App\Class;
 
 use App\Enum\TipoPublicacion;
+use Ramsey\Uuid\Uuid;
 
 class Publicacion implements \JsonSerializable {
-    private int $id;
+    private Uuid $uuid;
     private string $titulo;
     private string $contenido;
     private ?string $imagenPath;//? Puede recibir nulos.
     private TipoPublicacion $tipoPubli;
 
-    public function __construct(string $titulo, string $contenido, string $imagenPath, string $fechaPubli, TipoPublicacion $tipoPubli = TipoPublicacion::PENDIENTE){
+    public function __construct(int $uuid, string $titulo, string $contenido, string $imagenPath, string $fechaPubli, TipoPublicacion $tipoPubli = TipoPublicacion::PENDIENTE){
         $this->titulo = $titulo;
         $this->contenido = $contenido;
         $this->imagenPath = $imagenPath;
@@ -74,17 +75,6 @@ class Publicacion implements \JsonSerializable {
         return $this;
     }
 
-    public function getFechaPubli(): string
-    {
-        return $this->fechaPubli;
-    }
-
-    public function setFechaPubli(string $fechaPubli): Publicacion
-    {
-        $this->fechaPubli = $fechaPubli;
-        return $this;
-    }
-
     public function getTipoPubli(): TipoPublicacion
     {
         return $this->tipoPubli;
@@ -99,15 +89,13 @@ class Publicacion implements \JsonSerializable {
 
     //Métodos getters y setters.
 
-
     public function jsonSerialize(): mixed  //public function Este método debe devolver los datos que quieres incluir en el JSON cuando el objeto se serializa.
     {
         return [
             "titulo" => $this->titulo,
             "contenido" => $this->contenido,
             "imagenPath" => $this->imagenPath,
-            "fechaPubli" => $this->fechaPubli,
-            "tipoPubli" => $this->tipoPubli->name,
+            "tipoPubli" => $this->tipoPubli->name
 
         ];
     }

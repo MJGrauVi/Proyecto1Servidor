@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Auxiliar\Auxiliar;
 use App\Class\User;
 use App\Enum\TipoUsuario;
 use App\Interface\ControllerInterface;
@@ -41,7 +42,7 @@ class UserController implements ControllerInterface
     }
     function create()
     {
-        return include_once DIRECTORIO_VISTAS_BACKEND."User/createUser.php";
+        return include_once DIRECTORIO_VISTAS_FRONTEND ."createUser.php";
     }
 
     function store()
@@ -49,7 +50,9 @@ class UserController implements ControllerInterface
         $errores = User::validateUserCreation($_POST);
 
         if ($errores){
-            //Tenemos los datos con errores
+            var_dump($errores);
+            die();
+            //Si hay errores devuelve un array con los errores.
             if (Auxiliar::isAPIRequest()){
                 http_response_code(400);
                 return json_encode([
@@ -59,7 +62,8 @@ class UserController implements ControllerInterface
                     "code"=>400
                 ]);
             }else {
-                include_once DIRECTORIO_VISTAS_BACKEND . "/User/createUser.php";
+                include_once DIRECTORIO_VISTAS_FRONTEND . "createUser.php";
+                var_dump($_POST);
             }
 
         }else{
@@ -75,6 +79,8 @@ class UserController implements ControllerInterface
                     "code"=>400
                 ]);
             }else {
+                var_dump($_POST);
+                include_once DIRECTORIO_VISTAS_BACKEND . "User/mostrarUser.php";
                 header('Location: /user');
             }
         }

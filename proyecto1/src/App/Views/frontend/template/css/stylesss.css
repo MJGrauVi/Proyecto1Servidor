@@ -67,7 +67,7 @@ body {
   display: flex;
   gap: 1.5rem;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1100px;
   margin: 1rem auto;
   padding: 0 1rem;
   align-items: stretch;
@@ -76,7 +76,7 @@ body {
 
 /* Sidebar */
 .sidebar {
-  width: 360px;
+  width: 240px;
   background: var(--sidebar-bg);
   padding: 1.25rem;
   box-shadow: var(--shadow);
@@ -95,7 +95,6 @@ body {
 }
 
 .sidebar a {
-  white-space: nowrap;
   display: block;
   text-decoration: none;
   color: #0f172a;
@@ -104,9 +103,7 @@ body {
   font-weight: 500;
   transition: background 0.18s, color 0.18s, transform 0.18s;
 }
-.sidebar a {
-  white-space: nowrap;
-}
+
 .sidebar a:hover {
   background: linear-gradient(
     90deg,
@@ -123,13 +120,13 @@ main {
   width: auto;
   background: var(--sidebar-bg);
   border-radius: var(--radius);
-  padding: 2.5rem;
+  padding: 1.5rem;
   box-shadow: var(--shadow);
 }
 
 main h2 {
   font-size: 1.4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 /* Cards */
@@ -173,138 +170,17 @@ footer {
   margin-top: auto;
 }
 
-/* login */
-
-/*body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f4f4f4; }*/
-.login-container {
-  width: 500px;
-  margin: auto;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-.login-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-textarea {
-  width: 800px;
-}
-.form-group {
-  margin-bottom: 15px;
-}
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-.form-group button {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-.form-group button:hover {
-  background-color: #9C6CEEFF;
-}
-.error {
-  color: red;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-/* Versión móvil */
+/* Responsive */
 @media (max-width: 768px) {
   .layout {
     flex-direction: column;
   }
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -260px; /* oculto fuera de la vista */
-    height: 100vh;
-    width: 240px;
-    background: var(--sidebar-bg);
-    backdrop-filter: blur(12px);
-    box-shadow: var(--shadow);
-    padding: 1.5rem;
-    transition: left 0.3s ease;
-    z-index: 1000;
-  }
 
-  .sidebar.open {
-    left: 0px; /* aparece al hacer clic en la hamburguesa */
+  .sidebar {
+    width: 100%;
   }
 
   .nav-toggle {
     display: block;
-    z-index: 1100; /* siempre encima */
-  }
-  main h2 {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  /* Header */
-  .brand .logo {
-    font-size: 1.75rem;
-    padding-left: 2rem;
-  }
-  .site-header {
-    margin-top: 2rem;
-  }
-  /*Distribucion formulario publicacon*/
-  .form-container {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  /* Grupos de formulario */
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Textarea más ancho y visualmente cómodo */
-  #contenido {
-    width: 100%;
-    min-height: 180px;
-    resize: vertical;
-  }
-
-  /* Fieldset mejor presentado */
-  fieldset {
-    border: 1px solid #ccc;
-    padding: 1rem 1.5rem;
-  }
-
-  legend {
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0 8px;
-  }
-
-  /* Botón */
-  .btn-primary {
-    align-self: flex-start;
-    padding: 0.6rem 1.2rem;
   }
 }

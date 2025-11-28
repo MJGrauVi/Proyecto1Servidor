@@ -4,18 +4,22 @@ namespace App\Enum;
 
 enum TipoPublicacion
 {
-    case PENDIENTE;
-    case APROBADO;
-    case RECHAZADO;
+    case ARTICULO;
+    case CARTA_ABIERTA;
+    case REFLEXION;
+
 
     public static function stringToTipoPublicacion(string $tipoPubli): TipoPublicacion
     {
 
         return match (strtolower($tipoPubli)) {
-            "pendiente" => TipoPublicacion::PENDIENTE,
-            "aprobado" => TipoPublicacion::APROBADO,
-            "rechazado" => TipoPublicacion::RECHAZADO,
-            default => TipoPublicacion::PENDIENTE,
+            "articulo" => TipoPublicacion::ARTICULO,
+            "cartaAbierta" => TipoPublicacion::CARTA_ABIERTA,
+            "reflexion" => TipoPublicacion::REFLEXION,
+            default => TipoPublicacion::ARTICULO,
         };
+
+
     }
+
 }

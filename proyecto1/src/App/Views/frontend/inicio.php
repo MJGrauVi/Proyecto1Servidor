@@ -1,9 +1,10 @@
 <?php
    $titulo = "Inicio";
     $contenido = "Bienvenido a la web pública";
-    include "vistas/public/template/head.php";
-    include "vistas/public/template/header.php";
-    include "vistas/public/template/aside.php"; ?>
+    include "App/Views/frontend/template/frontend.head.php";
+    include "App/Views/frontend/template/frontend.header.php";
+    include "App/Views/frontend/template/frontend.aside.php";
+    ?>
 <main class="content">
     <h2 class="page-title"><?= $titulo ?></h2>
 
@@ -12,7 +13,7 @@ if (!empty($contenido)): //Si no esta vacio contenido.
     $class = match (true) { //Asigno clase según el título.
         strpos($titulo, 'DNI') !== false        => 'dni',
         strpos($titulo, 'Contraseña') !== false => 'password',
-        strpos($titulo, 'publicacion') !== false=> 'publicacion',
+        strpos($titulo, 'publicación') !== false=> 'publicacion',
         default                                 => 'info',
     };
 
@@ -36,4 +37,4 @@ endif;
 ?>
 </main>
 <?php
-include_once "vistas/public/template/footer.php";
+include_once "App/Views/frontend/template/frontend.footer.php";

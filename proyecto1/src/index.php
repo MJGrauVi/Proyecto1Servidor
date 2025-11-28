@@ -1,7 +1,7 @@
 <?php
-require_once "vendor/autoload.php";
+include_once "vendor/autoload.php";
 include_once "env.php";
-require_once "funciones.php";
+include_once "auxiliar/funciones.php";
 
 session_start();
 
@@ -39,26 +39,30 @@ $router->filter('admin', function(){
     }
 });
 
-$router->get('/error', function (){
-    $error="No puedes accedes a este apartado";
-    include_once "views/backend/errorNoAdmin.php";
+$router->get('/error',function(){
+    if (isset($_SESSION['error'])){
+        $error = $_SESSION['error'];
+    }else{
+        $error = "Error desconocido";
+    }
+    include_once DIRECTORIO_VISTAS_BACKEND ."errorVisual.php";
 });
 
-//Función de inicio. Si hay usuario logueado
-$router->get('/', function() {
-    if (isset($_SESSION['user'])) {
-        $user = $_SESSION['user']->getUsername();
-    } else {
-        //return 'Hola invitado. <a href="/login">Inicia sesión</a>';
-        $user = null;
-    }
-    include_once 'vistas/public/inicio.php';
+//Definir las rutas de mi aplicación
+
+$router->get('/',function(){
+    //return include_once DIRECTORIO_VISTAS_PUBLIC ."inicio.php";
+    include_once DIRECTORIO_VISTAS_FRONTEND ."inicio.php";
+});
+
+$router->get('/admin',function(){
+    return include_once DIRECTORIO_VISTAS_BACKEND."indexAdmin.php";
 });
 
 //Rutas de Usuario CRUD
 //Rutas asociadas a las vistas de usuario.
 $router->get('/user/{id}/edit/', [UserController::class, 'edit'],["before" => 'auth']);//Añadimos filtro.
-$router->get('/user/create/', [UserController::class, 'create']);
+$router->get('/user/create/', [UserController::class, 'create']);//muestr form para registrarse
 $router->get('/login', [UserController::class, 'show_login']); //Muestra el formularioLogin
 $router->post('/user/login', [UserController::class, 'verify']); //ok procesa el formularioLogin
 $router->get('/user/logout', [UserController::class, 'logout'],['before' =>'auth']); //Eliminar un ususario.
@@ -98,9 +102,9 @@ $router->get('/user/publicacion', function () {
     return "Procesando publicacion";
 });
 */
-$router->get('/post', function (){ //muestra el formulario para crear un pot.
+$router->get('/publi', function (){ //muestra el formulario para crear un pot.
     $titulo = "Añadir publicación";
-    //include_once DIRECTORIO_VISTAS_BACKEND . "/add-publicacion.php";
+    include_once DIRECTORIO_VISTAS_FRONTEND . "add-publicacion.php";
     //include_once DIRECTORIO_VISTAS_BACKEND . "/publicacion.php";
     //include_once DIRECTORIO_VISTAS_BACKEND . "/main.php";
 
@@ -109,7 +113,7 @@ $router->get('/post', function (){ //muestra el formulario para crear un pot.
 
  //Muestra el formularioPublicacion
 // Procesar datos enviados del formulario (POST)
-$router->post('/publicacion', function () {
+$router->get('/publicacion', function () {
     // Depurar datos recibidos
     var_dump($_POST);
     var_dump($_FILES);

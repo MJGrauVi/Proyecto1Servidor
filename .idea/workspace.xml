@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="367c22cf-444d-4531-a41f-d6a5b27ed599" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2abffb16-f660-4ef5-a3de-bc22f9ad36c7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2abffb16-f660-4ef5-a3de-bc22f9ad36c7/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Class/Publicacion.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Class/Publicacion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Controllers/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Controllers/PublicacionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Views/backend/User/createUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Views/backend/User/createUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Views/backend/template/head.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Views/backend/template/head.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Controllers/PublicacionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Controllers/PublicacionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyecto1/src/App/Model/UserModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/App/Model/UserModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proyecto1/src/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto1/src/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +89,11 @@
       <recent name="$PROJECT_DIR$/proyecto1/src" />
       <recent name="$PROJECT_DIR$/proyecto1" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="INDEX" />
+    </option>
   </component>
   <component name="RunManager" selected="Docker.proyecto1: Compose Deployment">
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/proyecto1/index.php">
@@ -174,6 +178,7 @@
       <workItem from="1762879500288" duration="419000" />
       <workItem from="1762880040851" duration="537000" />
       <workItem from="1762970609495" duration="5929000" />
+      <workItem from="1764341627345" duration="6130000" />
     </task>
     <servers />
   </component>

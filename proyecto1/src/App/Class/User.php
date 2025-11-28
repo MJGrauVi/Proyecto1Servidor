@@ -106,12 +106,10 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
         $this->tipo = $tipo;
         return $this;
     }
-
     public function isAdmin():bool{
         $retorno =  $this->tipo == TipoUsuario::ADMIN?true:false;
             return $retorno;
     }
-
     public function jsonSerialize(): mixed
     //Convierte lo que devuelve j_son_encode($user) en formato de salida JSON válido.
     {
@@ -152,10 +150,7 @@ class User implements \JsonSerializable  //interfaz que obliga a implementar Jso
 
         return $usuarioAntiguo;
 
-
-
     }
-
     public static function validateUserCreation(array $userData):array|false{
 
         try {

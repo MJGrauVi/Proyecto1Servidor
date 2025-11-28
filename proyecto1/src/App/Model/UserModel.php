@@ -10,32 +10,7 @@ use App\Class\DB;
 
 class UserModel
 {
-    /* //Evita el null del foreach.
-       public static function getAllUsers(): array
-    {
-        try {
-            $conexion = new PDO("mysql:host=mariadb;dbname=proyecto", "mariajose", "2222");
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sql = "SELECT * FROM user";
-            $sentenciaPreparada = $conexion->prepare($sql);
-            $sentenciaPreparada->execute();
-            $resultado = $sentenciaPreparada->fetchAll(PDO::FETCH_ASSOC);
-
-            $usuarios = [];
-            foreach ($resultado as $user) {
-                $usuarios[] = User::createFromArray($user);
-            }
-
-            return $usuarios;
-
-        } catch (\PDOException $error) {
-            // Puedes loguear el error si lo necesitas
-            return []; // Devuelve array vacío en caso de error
-        }
-    }*/
-
-//Codigo de Miguel Angel, no me devuelve la vista y lanza error porque el forEach me devuelve null.
     public static function getAllUsers(): ?array{
         try {
             $conexion = new PDO ("mysql:host=mariadb;dbname=proyecto", "mariajose", "gra200371");

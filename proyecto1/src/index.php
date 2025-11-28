@@ -10,6 +10,7 @@ use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\RouteCollector;
 use App\Controllers\UserController;
+use App\Controllers\PublicacionController;
 use App\Model\UserModel;
 use Ramsey\Uuid\Uuid;
 use App\Class\User;
@@ -102,29 +103,23 @@ $router->get('/user/publicacion', function () {
     return "Procesando publicacion";
 });
 */
+/*
 $router->get('/publi', function (){ //muestra el formulario para crear un pot.
     $titulo = "Añadir publicación";
     include_once DIRECTORIO_VISTAS_FRONTEND . "add-publicacion.php";
     //include_once DIRECTORIO_VISTAS_BACKEND . "/publicacion.php";
     //include_once DIRECTORIO_VISTAS_BACKEND . "/main.php";
 
-});
-
+});*/
 
  //Muestra el formularioPublicacion
 // Procesar datos enviados del formulario (POST)
-$router->get('/publicacion', function () {
+$router->get('/publicacion/create',[PublicacionController::class, 'create']);
+$router->post('/publi/show', [PublicacionController::class, 'mostrarPublicacion']);
+
+
     // Depurar datos recibidos
-    var_dump($_POST);
-    var_dump($_FILES);
-    $imgPost = scandir(__DIR__);
-    VAR_DUMP($imgPost);
-    if (!array_search('/uploaded', $imgPost)) {
-        mkdir(__DIR__ . '/uploaded');
-        move_uploaded_file($_FILES['imgPrincipal']['tmp_name'], __dir__ . '/uploaded/' . $_FILES['imgPrincipal']['name']);
-    } else {
-        move_uploaded_file($_FILES['imgPrincipal']['tmp_name'], __DIR__ . '/uploaded/' . $_FILES['imgPrincipal']['name']);
-    }
+
 
     // Crear carpeta uploader si no existe
    // $uploadDir = __DIR__ . "/uploader";
@@ -132,7 +127,7 @@ $router->get('/publicacion', function () {
     //    mkdir($uploadDir, 0777, true);
   //  }
     // Aquí iría tu lógica de guardar archivos, base de datos, etc.
-});
+//});
 
 
 //Define las rutas a la que va a responder mi aplicación web.
